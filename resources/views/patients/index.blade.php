@@ -23,7 +23,7 @@
                                 <thead style="background-color: #6777ef" >
                                     <th style="display: none" >ID</th>
                                     <th style="color: #fff">Nombre</th>
-                                    <th style="color: #fff">Apellido</th>
+                                    <th style="color: #fff">Apellidos</th>
                                     <th style="color: #fff">DPI</th>
                                     <th style="color: #fff">Dirección</th>
                                     <th style="color: #fff">Telefono</th>
