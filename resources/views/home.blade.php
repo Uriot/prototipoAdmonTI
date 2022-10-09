@@ -27,7 +27,7 @@
                                         <div class="card bg-c-green order-card">
                                             <div class="card-block">
                                                 <h5 class="m-b-20">Roles</h5>
-                                                @php
+                                                @php 
                                                     $roles = DB::table('roles')->count();
                                                 @endphp
                                                 <h2 class="text-right"><i class="fas fa-user-lock f-left"></i><span>{{ $roles }}</span></h2>
@@ -44,6 +44,30 @@
                                                 @endphp
                                                 <h2 class="text-right"><i class="fas fa-blog f-left"></i><span>{{ $blogs }}</span></h2>
                                                 <p class="m-b-0 text-right"><a href="/blogs" class="text-white">Ver más</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card bg-c-pink order-card">
+                                            <div class="card-block">
+                                                <h5 class="m-b-20">Pacientes</h5>
+                                                @php
+                                                    $blogs = DB::table('blogs')->count();
+                                                @endphp
+                                                <h2 class="text-right"><i class="fas fa-blog f-left"></i><span>{{ $blogs }}</span></h2>
+                                                <p class="m-b-0 text-right"><a href="/blogs" class="text-white">Ver más</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-xl-4">
+                                        <div class="card bg-c-blue order-card">
+                                            <div class="card-block">
+                                                <h5 class="m-b-20">Pacientes</h5>
+                                                @php
+                                                    $patients = DB::table('patients')->count();
+                                                @endphp
+                                                <h2 class="text-right"><i class="fas fa-user f-left"></i><span>{{ $patients }}</span></h2>
+                                                <p class="m-b-0 text-right"><a href="/patients" class="text-white">Ver más</a></p>
                                             </div>
                                         </div>
                                     </div>

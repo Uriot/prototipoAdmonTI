@@ -14,4 +14,7 @@
     <a class="nav-link" href="/pacientes">
         <i class=" fas fa-blog"></i><span>Pacientes</span>
     </a>
+    <a class="nav-link" href="/patients">
+        <i class=" fas fa-user"></i><span>Pacientes</span>
+    </a>
 </li>
