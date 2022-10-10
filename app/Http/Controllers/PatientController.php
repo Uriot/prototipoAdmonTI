@@ -25,8 +25,12 @@ class PatientController extends Controller
         $texto =trim($request->get('texto'));
         //$patients = Patient::paginate(6);
         $patients=DB::table('patients')
-                    ->select('id','nombre_1','apellido_1','dpi','direccion','telefono')
+                    ->select('id','nombre_1','nombre_2','apellido_1','apellido_2','direccion','telefono')
                     ->where('nombre_1','LIKE','%'.$texto.'%')
+                    ->orwhere('nombre_2','LIKE','%'.$texto.'%')
+                    ->orwhere('apellido_1','LIKE','%'.$texto.'%')
+                    ->orwhere('apellido_2','LIKE','%'.$texto.'%')
+                    ->orwhere('apellido_2','LIKE','%'.$texto.'%')
                     ->orderBY('nombre_1')
                     ->paginate(6);
         return view('patients.index',compact('patients','texto'));

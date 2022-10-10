@@ -22,11 +22,6 @@ class SeederTablaPermisos extends Seeder
             'crear-rol',
             'editar-rol',
             'eliminar-rol',
-            // blogs
-            'ver-blog',
-            'crear-blog',
-            'editar-blog',
-            'borrar-blog',
             // patients
             'ver-patient',
             'crear-patient',
