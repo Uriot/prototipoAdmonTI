@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient;
+use Illuminate\Support\Facades\DB;
 
 class PatientController extends Controller
 {
@@ -19,11 +20,17 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $patients = Patient::paginate(6);
-        return view('patients.index',compact('patients'));
-    }
+        $texto =trim($request->get('texto'));
+        //$patients = Patient::paginate(6);
+        $patients=DB::table('patients')
+                    ->select('id','nombre_1','apellido_1','dpi','direccion','telefono')
+                    ->where('nombre_1','LIKE','%'.$texto.'%')
+                    ->orderBY('nombre_1')
+                    ->paginate(6);
+        return view('patients.index',compact('patients','texto'));
+    } 
 
     /**
      * Show the form for creating a new resource.

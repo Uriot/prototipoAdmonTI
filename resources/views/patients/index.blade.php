@@ -12,10 +12,17 @@
                         <div class="card-body">
                             @can('crear-patient')
                                 <div class="pull-right">
-                                    <a class="btn btn-outline-warning" href="{{ route('patients.create') }}">Nuevo</a>                                </div>
-                                <div class="d-md-flex justify-content-md-end">
-                                    <input type="text" name="busqueda" class="form-control">
-                                    <input type="submit" value="Buscar Paciente" class="btn btn-info">
+                                    <a class="btn btn-outline-warning" href="{{ route('patients.create') }}">Nuevo</a>                                
+                                    <form action="{{route('patients.index')}}" method="get">
+                                        <div class="form-row">
+                                            <div class="col-sm-4 my-1">
+                                                <input type="text" class="form-control" name="texto" value="{{$texto}}">
+                                            </div>
+                                            <div class="col-auto my-1">
+                                                <input type="submit" class="btn btn-info" value="Buscar Paciente">
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                                 <br>
                             @endcan
@@ -31,6 +38,11 @@
                                     <th style="color: #fff">Acciones</th>
                                 </thead>
                                 <tbody>
+                                    @if(count($patients)<=0)
+                                        <tr>
+                                            <td colspan="5">¡El paciente no existe!</td>
+                                        </tr>
+                                    @else   
                                     @foreach ($patients as $patient)
                                         <tr>
                                             <td style="display: none">{{ $patient->id }}</td>
@@ -43,7 +55,6 @@
                                                 <option value="1">Activo</option>
                                                 <option value="2">Inactivo</option>
                                               </select></td>
-
                                             <td>
                                                 @can('editar-patient')
                                                     <a class="btn btn-primary" href="{{ route('patients.edit', $patient->id) }}">Editar</a>
@@ -58,6 +69,7 @@
                                                 </td>
                                         </tr>
                                     @endforeach
+                                    @endif
                                 </tbody>
                                 <div class="pagination justify-content-end">
                                     {{ $patients->links() }}
