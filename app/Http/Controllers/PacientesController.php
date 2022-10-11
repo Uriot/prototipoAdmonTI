@@ -54,42 +54,45 @@ class PacientesController  extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
-            'nombre_1'=> 'required',
-            'nombre_2'=> 'required',
-            'nombre_3'=> 'required',
-            'apellido_1'=> 'required',
-            'apellido_2'=> 'required',
-            'apellido_de_casado'=> 'required',
-            'estado_civil'=> 'required',
-            'telefono'=> 'required',
-            'direccion'=> 'required',
-            'dpi'=> 'required',
-            'departamento'=> 'required',
-            'municipio'=> 'required',
-            'estado_dpi'=> 'required',
-            'fecha_vencimiento_dpi'=> 'required',
-            'acceso_al_iggs'=> 'required',
-            'nacionalidad'=> 'required',
-            'edad'=> 'required',
-            'fecha_de_nacimiento'=> 'required',
-            'estado_paciente'=> 'required',
-            'direccion_dpi' => 'required',
-            'region'=> 'required',
-            'zona'=> 'required',
-            'colonia_barrio_aldea'=> 'required',
-            'departamento_actual'=> 'required',
-            'municipio_actual'=> 'required',
-            'referencia_vivienda'=> 'required',
-            'telefono_casa'=> 'required',
-            'celular_1'=> 'required',
-            'celular_2'=> 'required',
+            'name1' => 'required',
+            'lastName1' => 'required',
+            'genero' => 'required',
+            'estadoCivil' => 'required',
+            'fechaNacimiento' => 'required',
+            'edad' => 'required',
+            'accesoIGSS' => 'required',
+            'estadoDPI' => 'required',
+            'deptoOrigen' => 'required',
+            'muniOrigen' => 'required',
+            'address' => 'required',
+            'zona' => 'required',
+            'coloniaBarrioAldea' => 'required',
+            'deptoActual' => 'required',
+            'muniActual' => 'required',
+            'telefonoCasa' => 'required',
+            'telefono1' => 'required',
+
+            'nameEncargado' => 'required',
+            'lastNameEncargado' => 'required',
+            'parentescoGeneral' => 'required',
+            'addressGeneral' => 'required',
+            'zonaGeneral' => 'required',
+            'coloniaBarrioAldeaGeneral' => 'required',
+        
+            'deptoActualGeneral' => 'required',
+            'muniActualGeneral' => 'required',
+            'telefono1General' => 'required',
+            'muniActualGeneral' => 'required',
+
         ]);
 
-        Patient::create($request->all());
+        return $request;
+        // Blog::create($request->all());
 
         return redirect()->route('pacientes.index')
-                        ->with('success','Paciente creado correctamente.');
+            ->with('success', 'Paciente creado correctamente.');
     }
 
     /**
@@ -111,7 +114,8 @@ class PacientesController  extends Controller
      */
     public function edit($id)
     {
-        return view('pacientes.edit',compact('patient'));
+        $blog = json_decode("{id:1,title:'pedro',content:'abc@gasd.com'}");
+        return view('pacientes.edit', compact('blog'));
     }
 
     /**
