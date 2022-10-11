@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Patient;
 use Illuminate\Support\Facades\DB;
 
-class PatientController extends Controller
+class PacientesController  extends Controller
 {
     public function __construct()
     {
