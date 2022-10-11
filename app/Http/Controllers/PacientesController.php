@@ -23,8 +23,8 @@ class PacientesController  extends Controller
     public function index(Request $request)
     {
         $texto =trim($request->get('texto'));
-        //$patients = Patient::paginate(6);
-        $patients=DB::table('patients')
+        //$pacientes = Patient::paginate(6);
+        $pacientes=DB::table('pacientes')
                     ->select('id','nombre_1','nombre_2','apellido_1','apellido_2','direccion','telefono')
                     ->where('nombre_1','LIKE','%'.$texto.'%')
                     ->orwhere('nombre_2','LIKE','%'.$texto.'%')
@@ -33,7 +33,7 @@ class PacientesController  extends Controller
                     ->orwhere('apellido_2','LIKE','%'.$texto.'%')
                     ->orderBY('nombre_1')
                     ->paginate(6);
-        return view('patients.index',compact('patients','texto'));
+        return view('pacientes.index',compact('pacientes','texto'));
     } 
 
     /**
@@ -43,7 +43,7 @@ class PacientesController  extends Controller
      */
     public function create()
     {
-        return view('patients.create');
+        return view('pacientes.create');
     }
 
     /**
@@ -88,7 +88,7 @@ class PacientesController  extends Controller
 
         Patient::create($request->all());
 
-        return redirect()->route('patients.index')
+        return redirect()->route('pacientes.index')
                         ->with('success','Paciente creado correctamente.');
     }
 
@@ -111,7 +111,7 @@ class PacientesController  extends Controller
      */
     public function edit($id)
     {
-        return view('patients.edit',compact('patient'));
+        return view('pacientes.edit',compact('patient'));
     }
 
     /**
@@ -156,7 +156,7 @@ class PacientesController  extends Controller
 
         $patient->update($request->all());
 
-        return redirect()->route('patients.index')
+        return redirect()->route('pacientes.index')
                         ->with('success','Paciente actualizado correctamente');
     }
 
@@ -170,7 +170,7 @@ class PacientesController  extends Controller
     {
         $patient->delete();
 
-        return redirect()->route('patients.index')
+        return redirect()->route('pacientes.index')
                         ->with('success','Paciente eliminado correctamente');
     }
 }
