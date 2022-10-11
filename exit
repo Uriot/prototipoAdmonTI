@@ -1,0 +1,172 @@
+[33mcommit c1b2b16df426ac57ad30a0a09da76b11b9b631c3[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/isa[m[33m)[m
+Author: J-Isa <jlopezt12@miumg.edu.gt>
+Date:   Mon Oct 10 11:42:32 2022 -0600
+
+    Filtro actualizado y diseño de botones de accion
+
+[33mcommit 7669b881a674c8b65aa508cb81aabc398dc33a47[m
+Author: J-Isa <jlopezt12@miumg.edu.gt>
+Date:   Mon Oct 10 00:36:01 2022 -0600
+
+    Se creo el filtro de busqueda para pacientes
+
+[33mcommit 1e443c91fc7034bbf3f225ac449cd6c16cb60a09[m[33m ([m[1;32mmain[m[33m)[m
+Author: J-Isa <jlopezt12@miumg.edu.gt>
+Date:   Sat Oct 8 19:47:55 2022 -0600
+
+    edicion de formulario
+
+[33mcommit 6c2aea2fbe00a9ce4030cb56f6581785487ed8c3[m
+Author: J-Isa <jisa@gmail.com>
+Date:   Sat Oct 8 19:27:37 2022 -0600
+
+    realizacion de formulario
+
+[33mcommit 5779f6b804255b94b0d0a4d537b234a2a2eb37d0[m[33m ([m[1;32mfeature/jlavarreda[m[33m)[m
+Author: gamalavi <jonatan.lavarreda54@gmail.com>
+Date:   Thu Oct 6 21:50:13 2022 -0600
+
+    [UPDATE] Se complementa inicializacion de las vistas a implementar
+
+[33mcommit 0160e3440cc327fa961c36fa1b786eb743cc510f[m
+Author: gamalavi <jonatan.lavarreda54@gmail.com>
+Date:   Thu Oct 6 21:48:04 2022 -0600
+
+    [UPDATE] Se complementa inicializacion de las vistas a implementar
+
+[33mcommit 08dfa3be70fd7608161f147282015e6d8c17a25c[m
+Author: gamalavi <jonatan.lavarreda54@gmail.com>
+Date:   Thu Oct 6 21:21:46 2022 -0600
+
+    Se inicializa vista editar
+
+[33mcommit 124a2b5ccd3265dccc66f95b518242ea8e454966[m
+Author: gamalavi <jonatan.lavarreda54@gmail.com>
+Date:   Thu Oct 6 20:57:49 2022 -0600
+
+    [UPDATE] Se complementa inicializacion de las vistas a implementar
+
+[33mcommit 8a4d7d5650afade5fb9133233565d2c906ad7f40[m
+Author: gamalavi <jonatan.lavarreda54@gmail.com>
+Date:   Thu Oct 6 20:46:28 2022 -0600
+
+    Se inicializan vistas Pacientes
+
+[33mcommit 8f04e80b8216dde2be509bdd857e145479ba85c8[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sun Oct 2 01:45:10 2022 -0600
+
+    Segmento 5
+    
+    - bugfix permisos
+    - seeder de admin
+    - redirect home a login
+
+[33mcommit 26429015f3360247f5134fb3cbc9fac7a8463662[m
+Merge: fa8b776 cdf4fba
+Author: Elliot Urizar <elliotur@gmail.com>
+Date:   Sun Oct 2 01:11:53 2022 -0600
+
+    Merge branch 'feature/segmento4' into develop
+
+[33mcommit cdf4fbaa61db3160f7ae17cbdd428a8bccf4ceff[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sun Oct 2 01:10:38 2022 -0600
+
+    Segmento 4
+    
+    - se agregaron estilos para cards
+    - se crearon vistas de blogs
+    - se edito dashboard
+
+[33mcommit d1cf276df2b4d48bb73438257abb753a34a686af[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sun Oct 2 00:32:21 2022 -0600
+
+    Segmento 4
+    
+    - se renombraron los permisos
+    - se agrego vista crear, editar y ver de roles
+    - se elimino rol duplicado en usuarios
+
+[33mcommit 77ad015006ca3c3c8981864d7e26935300096cc1[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 23:43:34 2022 -0600
+
+    Segmento4
+    
+    - vista crear y editar usuario
+    - se elimino titulo de mas en vista usuarios
+
+[33mcommit b90acaa3ca2f48e8bf1f9b10d5da905ae846ea57[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 23:06:44 2022 -0600
+
+    Segmento 3
+    
+    - bugfix user role
+    - permisos superadmin
+    - seeder para llenar tabla permisos
+    - menu
+    - vista usuarios
+
+[33mcommit fa8b7762e944acf46e89140e724526401a71964b[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 21:19:54 2022 -0600
+
+    Segmento 3
+    
+    - funciones de Blog y users
+
+[33mcommit 6b1fd5b57337a9465b60f9c711c08fa46fb62aac[m
+Merge: a42ccd6 aa1e07e
+Author: Elliot Urizar <elliotur@gmail.com>
+Date:   Sat Oct 1 20:02:47 2022 -0600
+
+    Merge branch 'feature/segmento2' into develop
+
+[33mcommit aa1e07e115da34591032f0e0d91d9bed2f73b126[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 20:00:24 2022 -0600
+
+    Segmento 2
+    
+    - Creacion de archivos de vistas blade
+
+[33mcommit d224c79ebbf32523c15ecb8737b49a0994c8a323[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 19:54:47 2022 -0600
+
+    Segmento 2
+    
+    - creacion de migracion para blog
+    - uso de spatie en rutas de midleware
+    - creacion de controlador de blog, rol y user
+    - validaciones y funciones en controlador de rol
+    - creacion de modelo Blog
+    - user roles
+    - creacion de rutas en grupo midleware
+
+[33mcommit a42ccd639ac96e010a54813f9dee03bddc71f734[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 19:22:56 2022 -0600
+
+    Requires
+    
+     - se instalaron todos los requisitos para el proyecto composer y npm
+     - se genero front y auth de login
+     - se valido el uso de Spatie
+
+[33mcommit e192917fc7cd4f62b86b7a54d7c397218cb9798a[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 18:54:52 2022 -0600
+
+    Init
+    
+    creación de proyecto laravel
+
+[33mcommit 25d8f092c56dbd546bb6f1bae0edaad82bb90c13[m
+Author: Uriot (Eurizar) <elliotur@gmail.com>
+Date:   Sat Oct 1 18:53:21 2022 -0600
+
+    Initial commit
