@@ -162,7 +162,7 @@ class PacientesController extends Controller
                                     p.telefono_casa,
                                     p.celular_1,
                                     p.Celular_2 ,
-                                    p.id_familia_responsable as id_familiar_responsable,
+                                    p.id_familiar_responsable as id_familiar_responsable,
                                     mactual.id_municipio as id_municipio_actual,
                                     mactual.municipio as municipio_actual,
                                     dactual.id_departamento as id_departamento_actual,
@@ -188,10 +188,10 @@ class PacientesController extends Controller
                                             fr.id_familiar_responsable,
                                             fr.nom_padre as nombrePadre,
                                             fr.apell_padre as apellidoPadre,
-                                            fr.estadi_si_dad as estadoPadre,
+                                            fr.estado_sit_dad as estadoPadre,
                                             fr.nom_madre as nombreMadre,
                                             fr.apell_madre as apellidoMadre,
-                                            fr.estadi_si_mom as estadoMadre,     
+                                            fr.estado_sit_mom as estadoMadre,     
                                             fr.nom_encar as nombreEncargado,
                                             fr.apell_encar as apellidoEncargado,
                                             fr.id_parentesco as idParentesco,
@@ -203,10 +203,10 @@ class PacientesController extends Controller
                                             m.MUNICIPIO,
                                             d.ID_DEPARTAMENTO,
                                             d.DEPARTAMENTO,
-                                            fr.telefono_1,
-                                            fr.telefono_2     
+                                            fr.Celular_1 as telefono_1,
+                                            fr.Celular_2 as telefono_2     
                                         from tb_familiar_responsable fr 
-                                        inner join tb_paciente p on p.Id_Familia_Responsable = fr.id_familiar_responsable
+                                        inner join tb_paciente p on p.Id_Familiar_Responsable = fr.id_familiar_responsable
                                         inner join tb_municipio m on m.id_municipio = fr.id_municipio
                                         inner join tb_departamento d on d.ID_DEPARTAMENTO = m.ID_DEPARTAMENTO
                                         inner join tb_parentesco pr on pr.id_parentesco = fr.id_parentesco
