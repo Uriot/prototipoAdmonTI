@@ -22,7 +22,8 @@
                         </div>
                         @endif -->
 
-                        {{ Form::model($pacientes) }}
+
+                        {{ Form::model($pacientes, ['method' => 'PUT','route' => ['pacientes.update', $pacientes->id]]) }}
                         <ul class="nav nav-tabs left-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="Personal-tab" data-toggle="tab" href="#Personal" role="tab" aria-controls="Personal" aria-selected="true">Personal</a>
@@ -34,11 +35,14 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="Personal" role="tabpanel" aria-labelledby="Personal-tab">
                                 <div class="row gap-2">
+                                    <div class="form-group">
+                                        <input type="hidden" name="idPaciente" value="{{$pacientes->id}}" class="name1 form-control">
+                                    </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Primer Nombre*</label>
                                             <!-- {{ Form::text('primer_Nombre', null, ['placeholder' => 'Nombre','class' => 'form-control']) }} -->
-                                            <input type="text" name="primer_Nombre" value="{{$pacientes->nombre_1}}" class="name1 form-control">
+                                            <input type="text" name="name1" value="{{$pacientes->nombre_1}}" class="name1 form-control">
                                             @if ($errors->has('name1'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -204,28 +208,6 @@
                                             <select class="form-control" name="zona" value="{{$pacientes->zona}}">
                                                 @for($i = 0; $i <= 20; $i++) <option value="{{$i}}" {{$pacientes->zona == $i  ? 'selected' : ''}}>{{$i}}</option>
                                                     @endfor
-
-                                                    <!-- <option value="0">0</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                    <option value="11">11</option>
-                                                    <option value="12">12</option>
-                                                    <option value="13">13</option>
-                                                    <option value="14">14</option>
-                                                    <option value="15">15</option>
-                                                    <option value="16">16</option>
-                                                    <option value="17">17</option>
-                                                    <option value="18">18</option>
-                                                    <option value="19">19</option>
-                                                    <option value="20">20</option> -->
                                             </select>
                                             @if ($errors->has('zona'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -320,23 +302,24 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres</label>
-                                            <input type="text" name="namePadre" class="namePadre form-control">
+                                            <input type="text" name="namePadre" value="{{$generalPaciente->nombrePadre}}" class="namePadre form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos</label>
-                                            <input type="text" name="lastNamePadre" class="lastNamePadre form-control">
+                                            <input type="text" name="lastNamePadre" value="{{$generalPaciente->apellidoPadre}}" class="lastNamePadre form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4 d-flex justify-content-between px-3 align-items-center">
                                         <div class="form-group m-0" style="margin: auto !important;">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre1" value="Fallecido">
+                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre1" value="Fallecido" {{$generalPaciente->estadoPadre == 0  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioPadre1">Fallecido</label>
+
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre2" value="Encargado">
+                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre2" value="Encargado" {{$generalPaciente->estadoPadre == 1  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioPadre2">Encargado</label>
                                             </div>
                                         </div>
@@ -351,23 +334,23 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres</label>
-                                            <input type="text" name="nameMadre" class="nameMadre form-control">
+                                            <input type="text" name="nameMadre" class="nameMadre form-control" value="{{$generalPaciente->nombreMadre}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos</label>
-                                            <input type="text" name="lastNameMadre" class="lastNameMadre form-control">
+                                            <input type="text" name="lastNameMadre" class="lastNameMadre form-control" value="{{$generalPaciente->apellidoMadre}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4 d-flex justify-content-between px-3 align-items-center">
                                         <div class="form-group m-0" style="margin: auto !important;">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Fallecido">
+                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Fallecido" {{$generalPaciente->estadoMadre == 0  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioMadre2">Fallecido</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Encargado">
+                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Encargado" {{$generalPaciente->estadoMadre == 1  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioMadre2">Encargado</label>
                                             </div>
                                         </div>
@@ -382,7 +365,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres*</label>
-                                            <input type="text" name="nameEncargado" class="nameEncargado form-control">
+                                            <input type="text" name="nameEncargado" class="nameEncargado form-control" value="{{$generalPaciente->nombreEncargado}}">
                                             @if ($errors->has('nameEncargado'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -391,7 +374,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos*</label>
-                                            <input type="text" name="lastNameEncargado" class="lastNameEncargado form-control">
+                                            <input type="text" name="lastNameEncargado" class="lastNameEncargado form-control" value="{{$generalPaciente->apellidoEncargado}}">
                                             @if ($errors->has('lastNameEncargado'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -401,12 +384,9 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Parentesco*</label>
                                             <select class="form-control" name="parentescoGeneral">
-                                                <option value="0">Hermano (a)</option>
-                                                <option value="1">Tío (a)</option>
-                                                <option value="2">Hijo (a)</option>
-                                                <option value="3">Pareja</option>
-                                                <option value="4">Cuñado (a)</option>
-                                                <option value="5">Otros</option>
+                                                @foreach ($parentesco as $parent)
+                                                <option value="{{$parent->id_parentesco}}" {{$generalPaciente->idParentesco == $parent->id_parentesco  ? 'selected' : ''}}>{{$parent->tipo_parentesco}}</option>
+                                                @endforeach
                                             </select>
                                             @if ($errors->has('parentescoGeneral'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -422,7 +402,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Dirección*</label>
-                                            <input type="text" name="addressGeneral" class="addressGeneral form-control">
+                                            <input type="text" name="addressGeneral" class="addressGeneral form-control" value="{{$generalPaciente->direccion}}">
                                             @if ($errors->has('addressGeneral'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -432,27 +412,8 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Zona*</label>
                                             <select class="form-control" name="zonaGeneral">
-                                                <option value="0">0</option>
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
-                                                <option value="4">4</option>
-                                                <option value="5">5</option>
-                                                <option value="6">6</option>
-                                                <option value="7">7</option>
-                                                <option value="8">8</option>
-                                                <option value="9">9</option>
-                                                <option value="10">10</option>
-                                                <option value="11">11</option>
-                                                <option value="12">12</option>
-                                                <option value="13">13</option>
-                                                <option value="14">14</option>
-                                                <option value="15">15</option>
-                                                <option value="16">16</option>
-                                                <option value="17">17</option>
-                                                <option value="18">18</option>
-                                                <option value="19">19</option>
-                                                <option value="20">20</option>
+                                                @for($i = 0; $i <= 20; $i++) <option value="{{$i}}" {{$generalPaciente->zona == $i  ? 'selected' : ''}}>{{$i}}</option>
+                                                    @endfor
                                             </select>
                                             @if ($errors->has('zonaGeneral'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -462,7 +423,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Colonia / Barrio / Aldea*</label>
-                                            <input type="text" name="coloniaBarrioAldeaGeneral" class="coloniaBarrioAldeaGeneral form-control">
+                                            <input type="text" name="coloniaBarrioAldeaGeneral" class="coloniaBarrioAldeaGeneral form-control" value="{{$generalPaciente->coloniaBarrioAldea}}">
                                             @if ($errors->has('coloniaBarrioAldeaGeneral'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -474,7 +435,7 @@
                                             <label class="font-weight-bold" style="font-size: 1rem;">Departamento Actual*</label>
                                             <select class="form-control" name="deptoActualGeneral" id="deptoActualGeneral">
                                                 @foreach ($depto as $deptos)
-                                                <option value="{{$deptos->ID_DEPARTAMENTO}}">{{$deptos->DEPARTAMENTO}}</option>
+                                                <option value="{{$deptos->ID_DEPARTAMENTO}}" {{$generalPaciente->ID_DEPARTAMENTO == $deptos->ID_DEPARTAMENTO  ? 'selected' : ''}}>{{$deptos->DEPARTAMENTO}}</option>
                                                 @endforeach
                                             </select>
                                             @if ($errors->has('deptoActualGeneral'))
@@ -486,6 +447,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Municipio Actual*</label>
                                             <select class="form-control" name="muniActualGeneral" id="muniActualGeneral">
+                                                <option value="{{$generalPaciente->ID_MUNICIPIO}}">{{$generalPaciente->MUNICIPIO}}</option>
 
                                             </select>
                                             @if ($errors->has('muniActualGeneral'))
@@ -496,7 +458,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 1*</label>
-                                            <input type="text" name="telefono1General" class="telefono form-control">
+                                            <input type="text" name="telefono1General" class="telefono form-control" value="{{$generalPaciente->telefono_1}}">
                                             @if ($errors->has('telefono1General'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
@@ -505,7 +467,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 2</label>
-                                            <input type="text" name="telefono2General" class="telefono form-control">
+                                            <input type="text" name="telefono2General" class="telefono form-control" value="{{$generalPaciente->telefono_2}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">

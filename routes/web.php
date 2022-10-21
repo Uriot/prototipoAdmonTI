@@ -34,5 +34,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('expediente', ExpedienteController::class);
 
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
-    Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
+    Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGetEd']);
 });
