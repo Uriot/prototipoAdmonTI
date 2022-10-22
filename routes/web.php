@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AsistenciaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
@@ -30,6 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RolController::class);
     Route::resource('pacientes', PacientesController::class);
+    Route::resource('asistencia', AsistenciaController::class);
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
     Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
 });

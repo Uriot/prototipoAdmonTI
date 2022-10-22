@@ -107,6 +107,7 @@ class PacientesController extends Controller
 
         return $municipiosValues;
     }
+
     /**
      * Display the specified resource.
      *
@@ -124,6 +125,8 @@ class PacientesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+   
+
     public function edit($id_Paciente)
     {
         $depto = DB::select('select ID_DEPARTAMENTO, DEPARTAMENTO from tb_departamento ');
