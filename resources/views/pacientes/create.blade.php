@@ -395,12 +395,9 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Parentesco*</label>
                                             <select class="form-control" name="parentescoGeneral">
-                                                <option value="0">Hermano (a)</option>
-                                                <option value="1">Tío (a)</option>
-                                                <option value="2">Hijo (a)</option>
-                                                <option value="3">Pareja</option>
-                                                <option value="4">Cuñado (a)</option>
-                                                <option value="5">Otros</option>
+                                                @foreach ($parentesco as $parent)
+                                                <option value="{{$parent->id_parentesco}}">{{$parent->tipo_parentesco}}</option>
+                                                @endforeach
                                             </select>
                                             @if ($errors->has('parentescoGeneral'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
