@@ -14,9 +14,14 @@
                         <!-- @can('crear-paciente')  -->
                         <!-- @endcan -->
                         <div class="pull-right">
+                            <!-- Crear un paciente nuevo "quitar" -->
                             <a class="btn btn-warning" href="{{ route('pacientes.create') }}">Nuevo</a>
-                            <form action="{{route('pacientes.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
+                            
+                            <!-- Se redirecciona a expediente -->
+                            <form action="{{route('expediente.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
+
                                 <input name="texto" class="form-control mr-sm-2" type="text" placeholder="Ingrese Paciente" aria-label="Search">
+
                                 <button class="btn btn btn-info my-2 my-sm-0" type="submit">Buscar Paciente</button>
                             </form>
                         </div>
@@ -28,7 +33,7 @@
                                 <th style="color: #fff">Apellido</th>
                                 <th style="color: #fff">Dirección</th>
                                 <th style="color: #fff">Telefono</th>
-                                <th style="color: #fff">Estado</th>
+                                <!--<th style="color: #fff">Estado</th>-->
                                 <th style="color: #fff">Acciones</th>
                             </thead>
                             <tbody>
@@ -43,14 +48,22 @@
                                         <td>{{ $paciente->Apellido_1." ".$paciente->Apellido_2 }}</td>
                                         <td>{{ $paciente->Direccion }}</td>
                                         <td>{{ $paciente->Celular_1 }}</td>
+                                        <!--
                                         <td><select name="dowpdown" class="btn btn-warning">
                                                 <option value="1">Activo</option>
                                                 <option value="2">Inactivo</option>
                                             </select></td>
+                                        -->
+                                            
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
-                                                <a href="" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                <!--Boton de Informacion medica-->
+                                                <a href="{{ route('expediente.edit', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-address-book"></i></a>
+                                                <!--Boton de Vivienda-->
+                                                <a href="" class="btn btn-info"><i class="fas fa-address-book"></i></a>
+                                                <!--Boton de Ingreso familiar-->
+                                                <a href="" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                <!--Boton de Egreso Familiar-->
                                                 <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>

@@ -46,10 +46,11 @@ class ExpedienteController extends Controller
     {
         // $results = DB::select('select * from tb_departamento ');
 
+        $parentesco = DB::select('select id_parentesco , tipo_parentesco from tb_parentesco');
         $depto = DB::select('select ID_DEPARTAMENTO, DEPARTAMENTO from tb_departamento ');
         //$paciente = DB::select("select * from tbl_pacientes inner join"); //name, apellido, id_departamento, id_municipio
         // DB::table('tb_departamento')->select('ID_DEPARTAMENTO', 'DEPARTAMENTO');
-        return  view('pacientes.create', compact('depto'));
+        return  view('pacientes.create', compact('depto', 'parentesco'));
     }
 
     /**
@@ -107,6 +108,13 @@ class ExpedienteController extends Controller
 
         return $municipiosValues;
     }
+
+    public function municipiosGetEd($value, $id)
+    {
+        $municipiosValues = DB::select("select ID_MUNICIPIO, MUNICIPIO from tb_municipio where ID_DEPARTAMENTO = $id");
+
+        return $municipiosValues;
+    }
     /**
      * Display the specified resource.
      *
@@ -127,6 +135,7 @@ class ExpedienteController extends Controller
     public function edit($id_Paciente)
     {
         $depto = DB::select('select ID_DEPARTAMENTO, DEPARTAMENTO from tb_departamento ');
+        $parentesco = DB::select('select id_parentesco , tipo_parentesco from tb_parentesco');
         $paciente = DB::select('select 
                                     id_paciente as id,
                                     no_expediente as expediente,
@@ -153,7 +162,7 @@ class ExpedienteController extends Controller
                                     p.telefono_casa,
                                     p.celular_1,
                                     p.Celular_2 ,
-                                    p.id_familia_responsable as id_familiar_responsable,
+                                    p.id_familiar_responsable as id_familiar_responsable,
                                     mactual.id_municipio as id_municipio_actual,
                                     mactual.municipio as municipio_actual,
                                     dactual.id_departamento as id_departamento_actual,
@@ -173,12 +182,45 @@ class ExpedienteController extends Controller
                                 inner join tb_municipio mDpi on mDpi.ID_MUNICIPIO = dd.ID_Municipio 
                                 inner join tb_departamento dDpi on dDpi.ID_DEPARTAMENTO = mDpi.ID_DEPARTAMENTO
                                 where id_Paciente = ' . $id_Paciente);
+
+        $generalPacientes = DB::SELECT('select 
+                                            p.id_Paciente,
+                                            fr.id_familiar_responsable,
+                                            fr.nom_padre as nombrePadre,
+                                            fr.apell_padre as apellidoPadre,
+                                            fr.estado_sit_dad as estadoPadre,
+                                            fr.nom_madre as nombreMadre,
+                                            fr.apell_madre as apellidoMadre,
+                                            fr.estado_sit_mom as estadoMadre,     
+                                            fr.nom_encar as nombreEncargado,
+                                            fr.apell_encar as apellidoEncargado,
+                                            fr.id_parentesco as idParentesco,
+                                            pr.tipo_parentesco as tipoParentesco,
+                                            fr.direccion,
+                                            fr.zona,
+                                            fr.colonia_barrio_aldea as coloniaBarrioAldea,
+                                            m.ID_MUNICIPIO,
+                                            m.MUNICIPIO,
+                                            d.ID_DEPARTAMENTO,
+                                            d.DEPARTAMENTO,
+                                            fr.Celular_1 as telefono_1,
+                                            fr.Celular_2 as telefono_2     
+                                        from tb_familiar_responsable fr 
+                                        inner join tb_paciente p on p.Id_Familiar_Responsable = fr.id_familiar_responsable
+                                        inner join tb_municipio m on m.id_municipio = fr.id_municipio
+                                        inner join tb_departamento d on d.ID_DEPARTAMENTO = m.ID_DEPARTAMENTO
+                                        inner join tb_parentesco pr on pr.id_parentesco = fr.id_parentesco
+                                        where p.id_Paciente = ' . $id_Paciente);
+
         foreach ($paciente as $pass) {
             $pacientes = $pass;
         }
+        foreach ($generalPacientes as $gp) {
+            $generalPaciente = $gp;
+        }
         // $pacientes = Pacientes::find($id_Paciente); 
         // $pacientes = Pacientes::find($id_Paciente);
-        return view('pacientes.edit', compact('pacientes', 'depto'));
+        return view('expediente.edit', compact('pacientes', 'depto', 'generalPaciente', 'parentesco'));
     }
 
     /**
@@ -190,6 +232,7 @@ class ExpedienteController extends Controller
      */
     public function update(Request $request, $id)
     {
+        return $request;
     }
 
     /**
