@@ -57,12 +57,11 @@
                                             
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
-                                                <!--Boton de Informacion medica-->
-                                                <a href="{{ route('expediente.edit', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-address-book"></i></a>
+
                                                 <!--Boton de Vivienda-->
-                                                <a href="" class="btn btn-info"><i class="fas fa-address-book"></i></a>
-                                                <!--Boton de Ingreso familiar-->
-                                                <a href="" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                <a href="{{ route('expediente.create', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-address-book"></i></a>
+                                                <!--Boton de Editar-->
+                                                <a href="{{ route('expediente.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                                                 <!--Boton de Egreso Familiar-->
                                                 <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                             </div>
