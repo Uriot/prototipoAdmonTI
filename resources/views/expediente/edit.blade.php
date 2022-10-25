@@ -128,8 +128,8 @@
                                             <select class="form-control" name="tipo_sangre" value="{{$expediente->tipo_sangre}}">
                                             <option value="0" {{$expediente->tipo_sangre == 'A' ? 'selected' : ''}}>A</option>
                                                 <option value="1" {{$expediente->tipo_sangre == 'B' ? 'selected' : ''}}>B</option>                                               
-                                                <option value="2" {{$expediente->tipo_sangre == 'AB' ? 'selected' : ''}}>C</option>
-                                                <option value="3" {{$expediente->tipo_sangre == 'O' ? 'selected' : ''}}>D</option>
+                                                <option value="2" {{$expediente->tipo_sangre == 'AB' ? 'selected' : ''}}>AB</option>
+                                                <option value="3" {{$expediente->tipo_sangre == 'O' ? 'selected' : ''}}>O</option>
                                             </select>
                                             @if ($errors->has('tipo_sangre'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -179,13 +179,9 @@
                                     </div>
                                 <!--Botones-->  
                                 <div class="col-xs-12 col-sm-6 col-md-4">
+                                <label class="font-weight-bold" style="font-size: 1rem;">Volver a tabla Expedientes</label>
                                     <div class="text-center mb-1">
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
-                                    </div>
-                                    
-
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">ACTUALIZAR <i class="fas fa-mask"></i></button>
                                     </div>
                                 </div>
                                 <!--Botones-->     
@@ -230,9 +226,7 @@
                                     <div class="text-center mb-1">
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">ACTUALIZAR <i class="fas fa-mask"></i></button>
-                                    </div>
+                                   
                             </div>
                             <!--Botones-->
 
@@ -322,19 +316,18 @@
 
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
-                                            <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico por mes (aprox.) en Quetzales</label>
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Estimado por mes (aprox.) en Quetzales</label>
                                             <input type="number" name="total_aproximado" class="edad form-control" value="{{$expediente->total_aproximado}}">
                                         </div>
                                     </div>
 
                                 <!--Botones-->  
                                 <div class="col-xs-12 col-sm-6 col-md-4">
+                                <label class="font-weight-bold" style="font-size: 1rem;">Volver a tabla Expedientes</label>
                                     <div class="text-center mb-1">
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">ACTUALIZAR <i class="fas fa-mask"></i></button>
-                                    </div>
+                                    
                                 </div>
                                 <!--Botones-->
                                   
@@ -402,7 +395,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Total Aproximado</label>
 
-                                            <input disabled type="number" name="total_aproximado" id ="total" class="estimado form-control">
+                                            <input disabled type="number" name="total_aproximado" id ="total" class="estimado form-control" placeholder="Ingrese un valor para realizar suma">
 
                                         </div>
                                 </div>
