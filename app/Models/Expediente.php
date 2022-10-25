@@ -23,7 +23,24 @@ class Expediente extends Model
         'tipo_sangre',	
         'tratamientos' ,		
         'peso',
-        'Otros',
+        'Otros'
     ];
 
+    public function vivienda(){ 
+        return $this->hasOne(Vivienda::class);             
+    }
+    
+    public function ingreso_familiar(){ 
+        return $this->hasOne(Ingreso_familiar::class);             
+    }   
+
+    public function egreso_familiar(){ 
+        return $this->hasOne(Egreso_familiar::class);             
+    }  
+
+    public function pacientes(){ 
+        return $this->hasOne(Pacientes::class);             
+    }  
+    
+    
 }

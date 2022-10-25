@@ -15,7 +15,7 @@
                         <!-- @endcan -->
                         <div class="pull-right">
                             <!-- Crear un paciente nuevo "quitar" -->
-                            <a class="btn btn-warning" href="{{ route('pacientes.create') }}">Nuevo</a>
+                            <a class="btn btn-warning" href="{{ route('expediente.create') }}">Nuevo</a>
                             
                             <!-- Se redirecciona a expediente -->
                             <form action="{{route('expediente.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">

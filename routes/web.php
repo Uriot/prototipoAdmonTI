@@ -6,6 +6,8 @@ use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientesController;
 use App\Http\Controllers\ExpedienteController;
+use App\Http\Controllers\ExpT1Controller;
+use App\Models\ExpT1;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +34,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RolController::class);
     Route::resource('pacientes', PacientesController::class);
     Route::resource('expediente', ExpedienteController::class);
+
+
+
 
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
     Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGetEd']);
