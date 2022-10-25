@@ -192,17 +192,36 @@ class ExpedienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /*$insertar = array(
-            $request-> idExpediente,
-        
-    
-    
-    
+        $insertar = array(
+            $request-> id_infomedico,
+            $request-> fecha_diagnostico,
+            $request-> fecha_ingreso,
+            $request-> hipertenso,
+            $request-> diabetico,
+            $request-> cardiopatia,
+            $request-> fistula,
+            $request->tipo_sangre,
+            $request->tratamientos,
+            $request->peso,
+            $request->Otros,
+            $request->Observacion,
+            $request->vehiculo_propio,
+            $request->tipo_vehiculo,
+            $request->personas_laboran,
+            $request->sector_publico,
+            $request->sector_privado,
+            $request->negocio_propio,
+            $request->remesas,
+            $request->ayuda_social,
+            $request->total_aproximado,
+            $request->alimentacion,
+            $request->educacion,
+            $request->arrendamiento,
+            $request->servicios,
+            $request->salud,
+            $request->renta,
+            $request->costos_traslado,  
             );
-
-
-        //add sp
-        
 
         
         $insertar=json_encode($insertar);
@@ -211,7 +230,8 @@ class ExpedienteController extends Controller
         $insertar = str_replace("]","",$insertar);
 
         DB::select('call nombreProcedure('.$insertar.')');
-        */
+        
+
         return $request;
     }
     /**

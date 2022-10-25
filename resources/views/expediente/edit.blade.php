@@ -51,9 +51,9 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4 ">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Fecha de Diagnostico*</label>
-                                            <input type="date" name="fechaDiag" value="{{$expediente->fecha_diagnostico}}" class=" form-control">
+                                            <input type="date" name="fecha_diagnostico" value="{{$expediente->fecha_diagnostico}}" class=" form-control">
                                             
-                                            @if ($errors->has('fechaDiag'))
+                                            @if ($errors->has('fecha_diagnostico'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -62,9 +62,9 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4 ">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Fecha de Ingreso*</label>
-                                            <input type="date" name="fechaIngreso" value="{{$expediente->fecha_ingreso}}" class=" form-control">
+                                            <input type="date" name="fecha_ingreso" value="{{$expediente->fecha_ingreso}}" class=" form-control">
                                             
-                                            @if ($errors->has('fechaIngreso'))
+                                            @if ($errors->has('fecha_ingreso'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -112,7 +112,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Fistula</label>
-                                            <select class="form-control" name="accesoIGSS" value="{{$expediente->fistula}}">
+                                            <select class="form-control" name="fistula" value="{{$expediente->fistula}}">
                                                 <option value="1" {{$expediente->fistula == 'SI' ? 'selected' : ''}}>Sí</option>
                                                 <option value="0" {{$expediente->fistula == 'NO' ? 'selected' : ''}}>No</option>
                                             </select>
@@ -128,9 +128,8 @@
                                             <select class="form-control" name="tipo_sangre" value="{{$expediente->tipo_sangre}}">
                                             <option value="0" {{$expediente->tipo_sangre == 'A' ? 'selected' : ''}}>A</option>
                                                 <option value="1" {{$expediente->tipo_sangre == 'B' ? 'selected' : ''}}>B</option>                                               
-                                                <option value="2" {{$expediente->tipo_sangre == 'C' ? 'selected' : ''}}>C</option>
-                                                <option value="3" {{$expediente->tipo_sangre == 'D' ? 'selected' : ''}}>D</option>
-                                                <option value="4" {{$expediente->tipo_sangre == 'E' ? 'selected' : ''}}>E</option>
+                                                <option value="2" {{$expediente->tipo_sangre == 'AB' ? 'selected' : ''}}>C</option>
+                                                <option value="3" {{$expediente->tipo_sangre == 'O' ? 'selected' : ''}}>D</option>
                                             </select>
                                             @if ($errors->has('tipo_sangre'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -174,7 +173,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Observaciones</label>
-                                            <input type="text" name="lastName1" value="{{$expediente->Observacion}}" class="lastName1 form-control">
+                                            <input type="text" name="Observacion" value="{{$expediente->Observacion}}" class="lastName1 form-control">
                               
                                         </div>
                                     </div>
@@ -203,9 +202,9 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Vehiculo Propio</label>
-                                            <select class="form-control" name="vehiculo" value="{{$expediente->vehiculo_propio}}">
-                                                <option value="1" {{$expediente->vehiculo_propio == 'SI' ? 'selected' : ''}}>Sí</option>
-                                                <option value="0" {{$expediente->vehiculo_propio == 'NO' ? 'selected' : ''}}>No</option>
+                                            <select class="form-control" name="vehiculo_propio" value="{{$expediente->vehiculo_propio}}">
+                                                <option value="SI" {{$expediente->vehiculo_propio == 'SI' ? 'selected' : ''}}>Sí</option>
+                                                <option value="NO" {{$expediente->vehiculo_propio == 'NO' ? 'selected' : ''}}>No</option>
                                             </select>
                                             @if ($errors->has('vehiculo'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -216,11 +215,11 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Tipo de Vehiculo</label>
-                                            <select class="form-control" name="accesoIGSS" value="{{$expediente->tipo_vehiculo}}">
-                                                <option value="1" {{$expediente->tipo_vehiculo == 'PARTICULAR' ? 'selected' : ''}}>CARRO PARTICULAR</option>
-                                                <option value="0" {{$expediente->tipo_vehiculo == 'MOTOCICLETA' ? 'selected' : ''}}>MOTOCICLETA</option>
+                                            <select class="form-control" name="tipo_vehiculo" value="{{$expediente->tipo_vehiculo}}">
+                                                <option value="PARTICULAR" {{$expediente->tipo_vehiculo == 'PARTICULAR' ? 'selected' : ''}}>CARRO PARTICULAR</option>
+                                                <option value="MOTOCICLETA" {{$expediente->tipo_vehiculo == 'MOTOCICLETA' ? 'selected' : ''}}>MOTOCICLETA</option>
                                             </select>
-                                            @if ($errors->has('accesoIGSS'))
+                                            @if ($errors->has('tipo_vehiculo'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -260,8 +259,8 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Sector Publico</label>
                                             <select class="form-control" value="{{$expediente->sector_publico}}" name="sector_publico">
-                                                <option value="NO" {{$expediente->sector_publico == 'SI'  ? 'selected' : ''}}>SI</option>
-                                                <option value="SI" {{$expediente->sector_publico == 'NO'  ? 'selected' : ''}}>NO</option>
+                                                <option value="SI" {{$expediente->sector_publico == 'SI'  ? 'selected' : ''}}>SI</option>
+                                                <option value="NO" {{$expediente->sector_publico == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
                                             @if ($errors->has('genero'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -285,7 +284,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Tiene negocio propio</label>
-                                            <select class="form-control" value="{{$expediente->negocio_propio}}" name="negocio">
+                                            <select class="form-control" value="{{$expediente->negocio_propio}}" name="negocio_propio">
                                                 <option value="SI" {{$expediente->negocio_propio == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->negocio_propio == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
@@ -311,7 +310,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Recibe ayuda social</label>
-                                            <select class="form-control" value="{{$expediente->ayuda_social}}" name="ayuda">
+                                            <select class="form-control" value="{{$expediente->ayuda_social}}" name="ayuda_social">
                                                 <option value="SI" {{$expediente->ayuda_social == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->ayuda_social == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
@@ -324,7 +323,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="aproxEco" class="edad form-control" value="{{$expediente->total_aproximado}}">
+                                            <input type="number" name="total_aproximado" class="edad form-control" value="{{$expediente->total_aproximado}}">
                                         </div>
                                     </div>
 
@@ -353,57 +352,57 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;" >Estimado economico en Alimentacion por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado1" id = "estimado1" class="estimado form-control" value="{{$expediente->alimentacion}}" oninput="sumar()">
+                                            <input type="number" name="alimentacion" id = "estimado1" class="estimado form-control" value="{{$expediente->alimentacion}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;" onchange="sumar();" >Estimado economico en Educacion por mes por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado2" id = "estimado2" class="estimado form-control" value="{{$expediente->educacion}}" oninput="sumar()">
+                                            <input type="number" name="educacion" id = "estimado2" class="estimado form-control" value="{{$expediente->educacion}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;" >Estimado economico en Arrendamiento por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado3" id = "estimado3" class="estimado form-control" value="{{$expediente->arrendamiento}} " oninput="sumar()"> 
+                                            <input type="number" name="arrendamiento" id = "estimado3" class="estimado form-control" value="{{$expediente->arrendamiento}} " oninput="sumar()"> 
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico en Servicios por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado4" id = "estimado4" class="estimado form-control" value="{{$expediente->servicios}}" oninput="sumar()">
+                                            <input type="number" name="servicios" id = "estimado4" class="estimado form-control" value="{{$expediente->servicios}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico en Salud por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado5" id = "estimado5" class="estimado form-control" value="{{$expediente->salud}}" oninput="sumar()">
+                                            <input type="number" name="salud" id = "estimado5" class="estimado form-control" value="{{$expediente->salud}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico en Renta por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="estimado6" id = "estimado6" class="estimado form-control" value="{{$expediente->renta}}" oninput="sumar()">
+                                            <input type="number" name="renta" id = "estimado6" class="estimado form-control" value="{{$expediente->renta}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Costos de traslado (aprox.) en Quetzales </label>
-                                            <input type="number" name="estimado7" id = "estimado7" class="estimado form-control" value="{{$expediente->costos_traslado}}" oninput="sumar()">
+                                            <input type="number" name="costos_traslado" id = "estimado7" class="estimado form-control" value="{{$expediente->costos_traslado}}" oninput="sumar()">
                                         </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
-                                            <label class="font-weight-bold" style="font-size: 1rem;">Total Aprox</label>
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Total Aproximado</label>
 
-                                            <input disabled type="number" name="total" id ="total" class="estimado form-control">
+                                            <input disabled type="number" name="total_aproximado" id ="total" class="estimado form-control">
 
                                         </div>
                                 </div>
