@@ -192,7 +192,7 @@ class ExpedienteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $insertar = array(
+        /*$insertar = array(
             $request-> idExpediente,
         
     
@@ -211,7 +211,7 @@ class ExpedienteController extends Controller
         $insertar = str_replace("]","",$insertar);
 
         DB::select('call nombreProcedure('.$insertar.')');
-
+        */
         return $request;
     }
     /**
