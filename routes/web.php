@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\ExpedienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,11 +28,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/reportes/paciente/expediente/{id}', [PacientesController::class, 'expediente']);
 
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RolController::class);
     Route::resource('pacientes', PacientesController::class);
     Route::resource('asistencia', AsistenciaController::class);
+    Route::resource('expedientes', ExpedienteController::class);
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
     Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGetEd']);
 });
