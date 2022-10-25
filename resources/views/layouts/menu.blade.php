@@ -13,5 +13,7 @@
     </a>
     <a class="nav-link" href={{ route('reports.patients') }}>
         <i class="fa fa-list" ></i><span>Reporte Pacientes</span>
+    <a class="nav-link" href="/expedientes">
+        <i class="fas fa-medkit"></i><span>Expedientes</span>
     </a>
 </li>
