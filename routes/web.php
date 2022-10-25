@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PacientesController;
+use App\Http\Controllers\ReportsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +19,22 @@ use App\Http\Controllers\PacientesController;
 |
 */
 
+//! Rutas iniciales sin middleware
 Route::get('/', function () {
     return redirect('/login');
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware' => ['auth']], function () {
+    //! Rutas de controladores con funciones create, store, edit, update, destroy
     Route::resource('roles', RolController::class);
     Route::resource('pacientes', PacientesController::class);
     Route::resource('asistencia', AsistenciaController::class);
+
+    //! Rutas de peticiones get especificas
+    Route::get('reporte/pacientes', [ReportsController::class, 'patients'])->name('reports.patients');
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
     Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGetEd']);
 });
