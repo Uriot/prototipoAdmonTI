@@ -20,12 +20,13 @@ class ReportsController extends Controller
                 'fromAge' => $filters[0],
                 'toAge'   => $filters[1],
                 'name'    => $filters[2],
-                'dpi'     => $filters[3] ?? false,
+                'dpi'     => $filters[3],
             ];
-            $pdi = $filters['dpi'] ?? false;
             $patients = new Pacientes();
             $patients = $patients->getForFilters($request->get('filter'))->paginate(10);
         }
-        return view('reports.patients', compact('patients'));
+        $dpi = isset($filters['dpi']) ?? false;
+        return view('reports.patients', compact('patients', 'dpi'));
     }
+
 }

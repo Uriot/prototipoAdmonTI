@@ -45,6 +45,9 @@
                                     </tr>
                                     @else
                                     @foreach ($patients as $patient)
+                                    @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente')
+                                        <?php continue; ?>
+                                    @endif
                                     <tr>
                                         <td style="display: none">{{ $patient->id_Paciente }}</td>
                                         <td>{{ $patient->no_expediente}}</td>
@@ -55,7 +58,7 @@
                                         <td>{{ $patient->Edad }}</td>
                                     </tr>
                                     @endforeach
-                                    @endif
+                                @endif
                             </tbody>
                             <div class="pagination justify-content-end">
                                 {{ $patients->links() }}
