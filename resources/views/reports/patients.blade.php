@@ -18,12 +18,12 @@
                                         <input name="filter[]" class="form-control mr-2" type="number" placeholder="Desde Edad" aria-label="Search">
                                         <input name="filter[]" class="form-control mr-2" type="number" placeholder="Hasta Edad" aria-label="Search">
                                         <input name="filter[]" class="form-control mr-2" type="text" placeholder="Nombre o expediente" aria-label="Search">
-                                        <label class="mr-2"><input name="filter[]" class="form-control mr-2" type="checkbox"  id="dpi" value="true" aria-label="Search"> DPI vencido </label>
+                                        <label class="mr-2"><input name="filter[]" class="form-control mr-2" type="checkbox"  id="dpi" value="true" aria-label="Search"> DPI no vicente</label>
                                         <button class="btn btn btn-info my-2 my-sm-0 mr-2" type="submit"><i class="fa fa-search"></i>Buscar</button>
                                     </form>
                                 </div>
                                 <div class="col align-items-end">
-                                    <a class="btn btn-danger mr-2" href="#"><i class="fa fa-file-pdf-o"></i>PDF</a>
+                                    <a class="btn btn-danger mr-2" href="{{route('reports.patientsToPDF')}}?<?= $get?>"><i class="fa fa-file-pdf-o"></i>PDF</a>
                                     <a class="btn btn-success mr-2" href="#"><i class="fa fa-file-excel-o"></i>XLSX</a>
                                 </div>
                             </div>

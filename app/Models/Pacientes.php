@@ -59,9 +59,13 @@ class Pacientes extends Model
     //! filtros especificos
     public function getForFilters(array $filters)
     {
-        $query = $this->newQuery();
 
-        if (isset($filters[2])) {
+        $query = $this->newQuery();
+        if (isset($filters[0]) && isset($filters[1]) && !\is_numeric($filters[0])) {
+            $query->whereBetween('Edad', [$filters[0], $filters[1]]);
+        }
+
+        if (isset($filters[0]) && is_string($filters[0]) || isset($filters[2])) {
             $query->where('Nombre_1', 'like', '%'.$filters[2].'%')
             ->orWhere('Nombre_2', 'like', '%'.$filters[2].'%')
             ->orWhere('Nombre_3', 'like', '%'.$filters[2].'%')
@@ -70,11 +74,19 @@ class Pacientes extends Model
             ->orWhere('Apellido_de_Casada', 'like', '%'.$filters[2].'%')
             ->orWhere('no_expediente', 'like', '%'.$filters[2].'%');
         }
-        if (isset($filters[0]) && isset($filters[1])) {
-            $query->whereBetween('Edad', [$filters[0], $filters[1]]);
+
+        if (isset($filters[0]) && isset($filters[1]) && isset($filters[2])) {
+            $query->whereBetween('Edad', [$filters[0], $filters[1]])
+            ->where(function ($query) use ($filters) {
+                $query->where('Nombre_1', 'like', '%'.$filters[2].'%')
+                ->orWhere('Nombre_2', 'like', '%'.$filters[2].'%')
+                ->orWhere('Nombre_3', 'like', '%'.$filters[2].'%')
+                ->orWhere('Apellido_1', 'like', '%'.$filters[2].'%')
+                ->orWhere('Apellido_2', 'like', '%'.$filters[2].'%')
+                ->orWhere('Apellido_de_Casada', 'like', '%'.$filters[2].'%')
+                ->orWhere('no_expediente', 'like', '%'.$filters[2].'%');
+            });
         }
-        // var_dump($query->get());
-        // die();
 
         return $query;
     }
