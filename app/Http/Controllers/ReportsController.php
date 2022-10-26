@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PacientesExport;
 use App\Models\Dpi;
 use App\Models\Pacientes;
 use Illuminate\Http\Request;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
 
 use function PHPUnit\Framework\isNull;
 
@@ -49,5 +51,19 @@ class ReportsController extends Controller
         $pdf = PDF::loadView('pdf.patientsPDF', compact('patients', 'dpi'));
         $pdf->setPaper('legal', 'landscape');
         return $pdf->download('pacientes.pdf');
+    }
+
+    public function patientsToExcel (Request $request)
+    {
+        $filters = null;
+        if (!is_null($request->get('filter'))) {
+            $patients = Pacientes::all();
+            $filters = $request->get('filter');
+            $dpi = isset($filters[3]) ?? false;
+        }
+
+        $dpi = isset($dpi) ?? false;
+
+        return Excel::download(new PacientesExport($filters, $dpi), 'pacientes.xlsx');
     }
 }

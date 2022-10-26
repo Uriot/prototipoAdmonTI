@@ -61,11 +61,12 @@ class Pacientes extends Model
     {
 
         $query = $this->newQuery();
-        if (isset($filters[0]) && isset($filters[1]) && !\is_numeric($filters[0])) {
+        if (isset($filters[0]) && isset($filters[1])) {
+            $query = $this->newQuery();
             $query->whereBetween('Edad', [$filters[0], $filters[1]]);
         }
-
-        if (isset($filters[0]) && is_string($filters[0]) || isset($filters[2])) {
+        if (isset($filters[2])) {
+            $query = $this->newQuery();
             $query->where('Nombre_1', 'like', '%'.$filters[2].'%')
             ->orWhere('Nombre_2', 'like', '%'.$filters[2].'%')
             ->orWhere('Nombre_3', 'like', '%'.$filters[2].'%')
@@ -76,6 +77,7 @@ class Pacientes extends Model
         }
 
         if (isset($filters[0]) && isset($filters[1]) && isset($filters[2])) {
+            $query = $this->newQuery();
             $query->whereBetween('Edad', [$filters[0], $filters[1]])
             ->where(function ($query) use ($filters) {
                 $query->where('Nombre_1', 'like', '%'.$filters[2].'%')

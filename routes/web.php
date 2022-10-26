@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     //! Rutas de peticiones get especificas
     Route::get('reporte/pacientes', [ReportsController::class, 'patients'])->name('reports.patients');
     Route::get('reporte/pacientes/pdf', [ReportsController::class, 'patientsToPDF'])->name('reports.patientsToPDF');
+    Route::get('reporte/pacientes/excel', [ReportsController::class, 'patientsToExcel'])->name('reports.patientsToExcel');
     Route::get('pacientes/municipiosGet/{id}', [PacientesController::class, 'municipiosGet']);
     Route::get('pacientes/{paciente}/municipiosGet/{id}', [PacientesController::class, 'municipiosGetEd']);
 });

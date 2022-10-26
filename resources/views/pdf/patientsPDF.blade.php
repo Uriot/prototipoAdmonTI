@@ -67,8 +67,9 @@
 
         </thead>
         <tbody>
-            @if (count($patients)<=0) <tr>
-                <td colspan="5">No hay registros de pacientes.</td>
+            @if (count($patients)<=0)
+                <tr>
+                    <td colspan="5">No hay registros de pacientes.</td>
                 </tr>
                 @else
                 @foreach ($patients as $patient)
