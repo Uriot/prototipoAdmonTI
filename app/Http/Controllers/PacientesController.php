@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Blog;
 use App\Models\Pacientes;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PacientesController extends Controller
 {
@@ -184,6 +185,12 @@ class PacientesController extends Controller
         return $municipiosValues;
     }
 
+    public function expediente($id)
+    {
+        $paciente = Pacientes::find($id);
+        $pdf = PDF::loadView('pdf.expediente', compact('paciente'));
+        return $pdf->stream();
+    }
 
     public function municipiosGetEd($value, $id)
     {
