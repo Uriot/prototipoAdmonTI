@@ -42,6 +42,22 @@ class Pacientes extends Model
         return $this->hasOne(Dpi::class, 'idDatos_DPI', 'idDatos_DPI');
     }
 
+    public function municipio()
+    {
+        return $this->hasOne(Municipio::class, 'id_Municipio', 'ID_Municipio');
+    }
+
+    public function estadoPaciente()
+    {
+        return $this->hasOne(EstadoPaciente::class, 'id_Estado_Paciente', 'id_Estado_Paciente');
+    }
+
+    public function familiarResponsable()
+    {
+        return $this->hasOne(FamiliarResponsable::class, 'id_familiar_responsable', 'id_familiar_responsable');
+    }
+
+
     //! funcion para recorrer filtros por texto
     public function getForFiltersText($filters)
     {

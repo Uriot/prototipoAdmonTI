@@ -30,7 +30,13 @@
         <th>Telefono de Casa</th>
         <th>Celular 1</th>
         <th>Celular 2</th>
-        <th>Familiar Responable</th>
+        <th>Nombre Completo Encargado</th>
+        <th>Parentesco</th>
+        <th>Direccion de Encargado</th>
+        <th>Zona de Encargado</th>
+        <th>Colonia/Barrio/Aldea de Encargado</th>
+        <th>Municipio de Encargado</th>
+        <th>Telefono de Encargado</th>
     </tr>
     </thead>
     <tbody>
@@ -51,17 +57,25 @@
             <td>{{ $patient->Edad }}</td>
             <td>{{ $patient->Genero }}</td>
             <td>{{ $patient->Fecha_Nacimiento }}</td>
-            <td>{{ $patient->Estado_de_Paciente }}</td>
+            <td>{{ $patient->estadoPaciente->estado ?? 'N/D'}}</td>
             <td>{{ $patient->Religion }}</td>
             <td>{{ $patient->Direccion }}</td>
             <td>{{ $patient->Zona }}</td>
             <td>{{ $patient->Colonia_Barrio_Aldea }}</td>
-            <td>{{ $patient->Municipio }}</td>
+            <td>{{ $patient->municipio->MUNICIPIO }}</td>
             <td>{{ $patient->Referencia_Vivienda }}</td>
             <td>{{ $patient->Telefono_Casa }}</td>
             <td>{{ $patient->Celular_1 }}</td>
             <td>{{ $patient->Celular_2 }}</td>
-            <td>{{ $patient->Familiar_Responsable }}</td>
+            <td>{{ $patient->familiarResponsable->nom_encar }} {{ $patient->familiarResponsable->nom_encar }}</td>
+            <td>{{ $patient->familiarResponsable->parentesco ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->Direccion ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->Zona ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->Colonia_Barrio_Aldea ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->municipio->MUNICIPIO ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->Celular_1 ?? 'N/D' }} / {{ $patient->familiarResponsable->Celular_2 ?? 'N/D' }}</td>
+
+
         </tr>
     @endforeach
     </tbody>
