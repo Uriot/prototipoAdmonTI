@@ -18,7 +18,7 @@ class PacientesController extends Controller
         if (is_null($request->get('texto'))) {
             $texto = trim($request->get('texto'));
             $pacientes = DB::table('tb_paciente')
-                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1', 'id_estado_paciente')
                 ->orderBY('Nombre_1')
                 ->paginate(6);
         } else {
@@ -26,7 +26,7 @@ class PacientesController extends Controller
             $texto = trim($request->get('texto'));
             //$pacientes = Patient::paginate(6);
             $pacientes = DB::table('tb_paciente')
-                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1', 'id_estado_paciente')
                 ->where('Nombre_1', 'LIKE', '%' . $texto . '%')
                 ->orwhere('Nombre_2', 'LIKE', '%' . $texto . '%')
                 ->orwhere('Apellido_1', 'LIKE', '%' . $texto . '%')
@@ -34,8 +34,10 @@ class PacientesController extends Controller
                 ->orderBY('Nombre_1')
                 ->paginate(6);
         }
-        return view('pacientes.index', compact('pacientes', 'texto'));
+        $estados = DB:: select('select id_estado_paciente as id, estado as nombre from tb_estado_paciente');
+        return view('pacientes.index', compact('pacientes', 'texto', 'estados'));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -53,6 +55,17 @@ class PacientesController extends Controller
         return  view('pacientes.create', compact('depto', 'parentesco'));
     }
 
+    public function updateState($id, $estado)
+    {
+        //$municipiosValues = DB::select("select ID_MUNICIPIO, MUNICIPIO from tb_municipio where ID_DEPARTAMENTO = $id");
+
+        //Query para modificar estado de paciente.
+        //update tb_paciente set id_estado_paciente = $estado where id_Paciente = $id
+        $bueno = $estado;
+        DB::update('update tb_paciente set id_estado_paciente = ? where id_Paciente = ?'
+        ,[$bueno, $id]);
+        return redirect()->route('pacientes.index',$estado);
+    }
     /**
      * Store a newly created resource in storage.
      *
