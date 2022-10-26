@@ -68,7 +68,7 @@
             <td>{{ $patient->Celular_1 }}</td>
             <td>{{ $patient->Celular_2 }}</td>
             <td>{{ $patient->familiarResponsable->nom_encar }} {{ $patient->familiarResponsable->nom_encar }}</td>
-            <td>{{ $patient->familiarResponsable->parentesco ?? 'N/D' }}</td>
+            <td>{{ $patient->familiarResponsable->parentesco->tipo_parentesco ?? 'N/D' }}</td>
             <td>{{ $patient->familiarResponsable->Direccion ?? 'N/D' }}</td>
             <td>{{ $patient->familiarResponsable->Zona ?? 'N/D' }}</td>
             <td>{{ $patient->familiarResponsable->Colonia_Barrio_Aldea ?? 'N/D' }}</td>
