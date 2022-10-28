@@ -40,6 +40,15 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Número de Expendiente*</label>
+                                            <input type="text" disabled name="noExpediente" value="{{$pacientes->noExpediente}}" class="noExpediente form-control">
+                                            @if ($errors->has('noExpediente'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Primer Nombre*</label>
                                             <!-- {{ Form::text('primer_Nombre', null, ['placeholder' => 'Nombre','class' => 'form-control']) }} -->
                                             <input type="text" disabled name="name1" value="{{$pacientes->nombre_1}}" class="name1 form-control">
@@ -88,7 +97,7 @@
                                                 <option value="F" {{$pacientes->genero == 'F'  ? 'selected' : ''}}>Femenino</option>
                                                 <option value="M" {{$pacientes->genero == 'M'  ? 'selected' : ''}}>Masculino</option>
                                             </select>
-                                     </div>
+                                        </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
