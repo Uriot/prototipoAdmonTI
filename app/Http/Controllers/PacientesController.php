@@ -423,7 +423,87 @@ class PacientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request;
+        if ($request->telefono2 == "") {
+            $request->telefono2 = 0;
+        }
+        if ($request->telefono2General == "") {
+            $request->telefono2General = 0;
+        }
+        if ($request->dpi == "") {
+            $request->dpi = 0;
+        }
+        $values = array(
+            $request->noExpediente,
+            $request->name1,
+            $request->name2,
+            $request->name2,
+            $request->lastName1,
+            $request->lastName2,
+            $request->lastName3,
+            $request->estadoCivil,
+            $request->accesoIGSS,
+            $request->nacionalidad,
+            $request->edad,
+            $request->genero,
+            $request->fechaNacimiento,
+            1,
+            $request->religion,
+            $request->address,
+            $request->zona,
+            $request->coloniaBarrioAldea,
+            $request->muniActual,
+            $request->refVivienda,
+            str_replace("-", "", $request->telefonoCasa),
+            str_replace("-", "", $request->telefono1),
+            str_replace("-", "", $request->telefono2),
+            // $request->telefono1,
+            // $request->telefono2,           
+
+            str_replace(" ", "", $request->dpi),
+            $request->muniOrigen,
+            $request->estadoDPI,
+            $request->dpiFechaVencimiento,
+
+            // $request->deptoOrigen,
+            // $request->deptoActual,
+
+            $request->nameEncargado,
+            $request->lastNameEncargado,
+            $request->parentescoGeneral,
+            // $request->especifiqueGeneral,
+            $request->addressGeneral,
+            $request->zonaGeneral,
+            $request->coloniaBarrioAldeaGeneral,
+            // $request->deptoActualGeneral,
+            $request->muniActualGeneral,
+            // $request->telefono1General,
+            str_replace("-", "", $request->telefono1General),
+            str_replace("-", "", $request->telefono2General),
+            // $request->telefono2General,
+
+            $request->namePadre,
+            $request->lastNamePadre,
+            $request->radioOpPadre,
+
+            $request->nameMadre,
+            $request->lastNameMadre,
+            $request->radioOpMadre,
+
+            $request->especifiqueGeneral,
+            $request->idPaciente,
+            "U"
+        );
+
+        $valueFormat = json_encode($values);
+        $valueFormat = str_replace("[", "", $valueFormat);
+        $valueFormat = str_replace("]", "", $valueFormat);
+        DB::select('call SP_UPDATE_PACIENTE(' . $valueFormat . ')');
+
+
+
+        return redirect()->route('pacientes.index')
+            ->with('success', 'Paciente modificado correctamente');
+        // return $valueFormat;
     }
 
     /**
