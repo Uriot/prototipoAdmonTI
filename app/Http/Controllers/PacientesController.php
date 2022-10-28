@@ -279,7 +279,7 @@ class PacientesController extends Controller
                 fr.nom_madre as nombreMadre,
                 fr.apell_madre as apellidoMadre,
 
-                ifnull(fr.estado_sit_mom, 2020)as estadoMadre,
+                ifnull(fr.estado_sit_mom, 2020) as estadoMadre,
 
                 fr.nom_encar as nombreEncargado,
                 fr.apell_encar as apellidoEncargado,
