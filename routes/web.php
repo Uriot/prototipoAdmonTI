@@ -36,7 +36,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RolController::class);
     Route::resource('pacientes', PacientesController::class);
     Route::resource('asistencia', AsistenciaController::class);
-    Route::resource('expedientes', ExpedienteController::class);
+    Route::resource('expediente', ExpedienteController::class);
 
     //! Rutas de peticiones get especificas
     Route::get('reporte/pacientes', [ReportsController::class, 'patients'])->name('reports.patients');
