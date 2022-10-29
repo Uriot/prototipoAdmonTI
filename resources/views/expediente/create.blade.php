@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <!-- @if ($errors->any())
+                        @if ($errors->any())
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <strong>Ups!</strong> Verifique los campos.<br><br>
                             @foreach ($errors->all() as $error)
@@ -18,9 +18,9 @@
                             @endforeach
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>s
+                            </button>
                         </div>
-                        @endif -->
+                        @endif
                         {{ Form::model($infopacientes, ['method' => 'POST','route' => ['expediente.store']]) }}
 
                         <ul class="nav nav-tabs left-tabs" id="myTab" role="tablist">
