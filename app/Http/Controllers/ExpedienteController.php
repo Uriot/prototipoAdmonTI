@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Blog;
 use App\Models\Expediente;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Node\Stmt\Return_;
 
 class ExpedienteController extends Controller
 {
@@ -18,7 +19,7 @@ class ExpedienteController extends Controller
         if (is_null($request->get('texto'))) {
             $texto = trim($request->get('texto'));
             $pacientes = DB::table('tb_paciente')
-                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+                ->select('id_Paciente', 'no_expediente' ,'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
                 ->orderBY('Nombre_1')
                 ->paginate(6);
         } else {
@@ -42,16 +43,19 @@ class ExpedienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        // $results = DB::select('select * from tb_departamento ');
+    public function create(Request $request)
+    {   
+        $are = $request;
+        $arr = str_split($are);
+        $infopaciente = DB::select('Select id_Paciente, no_expediente, Nombre_1, Apellido_1 from tb_paciente where id_Paciente=' . $arr[23]);
 
-        //$parentesco = DB::select('select id_parentesco , tipo_parentesco from tb_parentesco');
-        //$depto = DB::select('select ID_DEPARTAMENTO, DEPARTAMENTO from tb_departamento ');
-        //$paciente = DB::select("select * from tbl_pacientes inner join"); //name, apellido, id_departamento, id_municipio
-        // DB::table('tb_departamento')->select('ID_DEPARTAMENTO', 'DEPARTAMENTO');
-        //return  view('expediente.create', compact('depto', 'parentesco'));
+        foreach ($infopaciente as $ipac) {
+            $infopacientes = $ipac;
+        }
+        
 
+        return view('expediente.create', compact('infopacientes'));
+        
 
     }
 
@@ -63,48 +67,77 @@ class ExpedienteController extends Controller
      */
     public function store(Request $request)
     {
+            
+        $insertar = array( 
+            $request->id_expediente,
+            $request->fecha_diagnostico,
+            $request->fecha_ingreso,
+            $request->hipertenso,
+            $request->diabetico,
+            $request->cardiopatia,
+            $request->id_A_Vascular,
+            $request->tipo_sangre,
+            $request->tratamientos,
+            $request->peso,
+            $request->Otros,
+            $request->Observacion,
+            $request->tipo_vivienda,
+            $request->vehiculo_propio,
+            $request->tipo_vehiculo,
+            $request->no_hijos,
+            $request->total_nucleo_familiar,
+            $request->personas_laboran,
+            $request->sector_publico,
+            $request->sector_privado,
+            $request->negocio_propio,
+            $request->remesas,
+            $request->ayuda_social,
+            $request->total_aproximado_i,
+            $request->alimentacion,
+            $request->educacion,
+            $request->arrendamiento,
+            $request->servicios,
+            $request->salud,
+            $request->renta,
+            $request->costos_traslado,
+            $request->total_aproximado_e
 
-        $request->validate([
+            );
 
-            'id_infomedico' => 'required',
-            'id_paciente' => 'required',
-            'id_expediente' => 'required',
-            'fecha_diagnostico' => 'required',
-            'fecha_ingreso'	 => 'required',	
-            'id_A_Vascular' => 'required',
-            'hipertenso' => 'required',
-            'diabetico'	 => 'required',	
-            'cardiopatia' => 'required',	
-            'fistula' => 'required',	
-            'tipo_sangre' => 'required',	
-            'tratamientos' => 'required',		
-            'peso'	=> 'required',
-            'Otros' => 'required',
+        
+        $insertar=json_encode($insertar);
 
-            'vehiculo_propio'  => 'required',
-            'tipo_propio'  => 'required',
+        $insertar = str_replace("[","",$insertar);
+        $insertar = str_replace("]","",$insertar);
 
+        DB::select('call SP_EXPEDIENTE('.$insertar.')');
+        echo "<script>alert('Registro agregado correctamente');</script>";
+        
+        
 
-            'personas_laboran'  => 'required',
-            'sector_publico'  => 'required',
-            'sector_privado'  => 'required',
-            'negocio_propio'  => 'required',
-            'remesas'  => 'required',
-            'ayuda_social'  => 'required',
-            'total_aproximado'  => 'required',
+        if (is_null($request->get('texto'))) {
+            $texto = trim($request->get('texto'));
+            $pacientes = DB::table('tb_paciente')
+                ->select('id_Paciente', 'no_expediente' ,'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+                ->orderBY('Nombre_1')
+                ->paginate(6);
+        } else {
 
-            'alimentacion'  => 'required',
-            'educacion'  => 'required',
-            'arrendamiento'  => 'required',
-            'servicios'  => 'required',
-            'salud'  => 'required',
-            'renta'  => 'required',
-            'costos_traslado'  => 'required',
-            'total_aproximado'  => 'required',
+            $texto = trim($request->get('texto'));
+            //$pacientes = Patient::paginate(6);
+            $pacientes = DB::table('tb_paciente')
+                ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+                ->where('Nombre_1', 'LIKE', '%' . $texto . '%')
+                ->orwhere('Nombre_2', 'LIKE', '%' . $texto . '%')
+                ->orwhere('Apellido_1', 'LIKE', '%' . $texto . '%')
+                ->orwhere('Apellido_2', 'LIKE', '%' . $texto . '%')
+                ->orderBY('Nombre_1')
+                ->paginate(6);
+        }
+        return view('expediente.index', compact('pacientes', 'texto'));
 
-        ]);
-
-        return $request;
+    
+        
         // Blog::create($request->all());
 
         // return redirect()->route('pacientes.index')
@@ -120,6 +153,7 @@ class ExpedienteController extends Controller
     public function show($id)
     {
         
+        
     }
 
     /**
@@ -129,47 +163,67 @@ class ExpedienteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id_Expediente)
-    {
-       $expedientes = DB::select('select a.id_infomedico as id,
-       a.fecha_diagnostico, 
-       a.fecha_ingreso, 
-       a.hipertenso, 
-       a.diabetico, 
-       a.cardiopatia, 
-       a.fistula, 
-       a.tipo_sangre, 
-       a.tratamientos, 
-       a.peso, 
-       a.Otros, 
-       a.Observacion,
-       v.vehiculo_propio,
-       v.tipo_vehiculo,
-       c.personas_laboran,
-       c.sector_publico,
-       c.sector_privado,
-       c.negocio_propio,
-       c.remesas,
-       c.ayuda_social,
-       c.total_aproximado,
-       e.alimentacion,
-       e.educacion,
-       e.arrendamiento,
-       e.servicios,
-       e.salud,
-       e.renta,
-       e.costos_traslado,
-       e.total_aproximado
-       from tb_informacion_medica a
-       inner join tb_expedientes b on b.id_expedientes=a.id_expediente
-       join tb_paciente p on p.id_paciente=b.id_paciente
-       inner join tb_vivienda v on v.id_vivienda=b.id_vivienda
-       inner join tb_ingreso_familiar c on c.id_ingreso_familiar=b.id_ingreso_familiar
-       join tb_egreso_familiar e on e.id_egreso_familiar=b.id_egreso_familiar
-       where p.id_paciente= ' . $id_Expediente);
+    {     
+       
+
+       $expedientes = DB::select('Select 
+
+
+       
+       te.id_Expedientes AS id,
+              p.Nombre_1,
+              p.Apellido_1,
+              p.no_expediente,
+              im.fecha_diagnostico, 
+              im.fecha_ingreso, 
+              im.hipertenso, 
+              im.diabetico, 
+              im.cardiopatia, 
+              im.id_A_Vascular, 
+              im.tipo_sangre, 
+              im.tratamientos, 
+              im.peso, 
+              im.Otros, 
+              im.Observacion,
+              v.tipo_vivienda,
+              v.vehiculo_propio,
+              v.tipo_vehiculo,
+              v.no_hijos,
+              v.total_nucleo_familiar,
+              c.personas_laboran,
+              c.sector_publico,
+              c.sector_privado,
+              c.negocio_propio,
+              c.remesas,
+              c.ayuda_social,
+              c.total_aproximado_i,
+              e.alimentacion,
+              e.educacion,
+              e.arrendamiento,
+              e.servicios,
+              e.salud,
+              e.renta,
+              e.costos_traslado,
+              e.total_aproximado_e
+       
+             from tb_informacion_medica im
+              inner join tb_expedientes te
+              on im.id_infomedico = te.id_infomedico
+              INNER join tb_paciente p 
+              on p.id_paciente=im.id_paciente
+              inner join tb_vivienda v 
+              on v.id_vivienda=te.id_vivienda
+              inner join tb_ingreso_familiar c 
+              on c.id_ingreso_familiar=te.id_ingreso_familiar
+              INNER join tb_egreso_familiar e 
+              on e.id_egreso_familiar=te.id_egreso_familiar
+              where p.id_paciente=' . $id_Expediente);
+
+      
 
        foreach ($expedientes as $pass) {
         $expediente = $pass;
-    }
+        }
                         
         
         //$expediente = Expediente::find($id_infomedico);
@@ -181,6 +235,13 @@ class ExpedienteController extends Controller
         // $pacientes = Pacientes::find($id_Paciente); 
         // $pacientes = Pacientes::find($id_Paciente);
         return view('expediente.edit', compact('expediente'));
+        
+
+
+
+
+
+        
     }
 
     /**
@@ -190,37 +251,43 @@ class ExpedienteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $insertar = array(
-            $request-> id_infomedico,
-            $request-> fecha_diagnostico,
-            $request-> fecha_ingreso,
-            $request-> hipertenso,
-            $request-> diabetico,
-            $request-> cardiopatia,
-            $request-> fistula,
+       
+        $insertar = array( 
+            $request->id_paciente,
+            $request->fecha_diagnostico,
+            $request->fecha_ingreso,
+            $request->hipertenso,
+            $request->diabetico,
+            $request->cardiopatia,
+            $request->id_A_Vascular,
             $request->tipo_sangre,
             $request->tratamientos,
             $request->peso,
             $request->Otros,
             $request->Observacion,
+            $request->tipo_vivienda,
             $request->vehiculo_propio,
             $request->tipo_vehiculo,
+            $request->no_hijos,
+            $request->total_nucleo_familiar,
             $request->personas_laboran,
             $request->sector_publico,
             $request->sector_privado,
             $request->negocio_propio,
             $request->remesas,
             $request->ayuda_social,
-            $request->total_aproximado,
+            $request->total_aproximado_i,
             $request->alimentacion,
             $request->educacion,
             $request->arrendamiento,
             $request->servicios,
             $request->salud,
             $request->renta,
-            $request->costos_traslado,  
+            $request->costos_traslado,
+            $request->total_aproximado_e
+
             );
 
         
@@ -228,11 +295,35 @@ class ExpedienteController extends Controller
 
         $insertar = str_replace("[","",$insertar);
         $insertar = str_replace("]","",$insertar);
-
-        DB::select('call nombreProcedure('.$insertar.')');
         
 
-        return $request;
+       //DB::select('call SP_UPDATE_EXPEDIENTE('.$insertar.')');
+       
+       echo "<script>alert('Registro agregado correctamente');</script>";
+        
+        
+
+       if (is_null($request->get('texto'))) {
+           $texto = trim($request->get('texto'));
+           $pacientes = DB::table('tb_paciente')
+               ->select('id_Paciente', 'no_expediente' ,'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+               ->orderBY('Nombre_1')
+               ->paginate(6);
+       } else {
+
+           $texto = trim($request->get('texto'));
+           //$pacientes = Patient::paginate(6);
+           $pacientes = DB::table('tb_paciente')
+               ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1')
+               ->where('Nombre_1', 'LIKE', '%' . $texto . '%')
+               ->orwhere('Nombre_2', 'LIKE', '%' . $texto . '%')
+               ->orwhere('Apellido_1', 'LIKE', '%' . $texto . '%')
+               ->orwhere('Apellido_2', 'LIKE', '%' . $texto . '%')
+               ->orderBY('Nombre_1')
+               ->paginate(6);
+       }
+       return view('expediente.index', compact('pacientes', 'texto'));
+       
     }
     /**
      * Remove the specified resource from storage.

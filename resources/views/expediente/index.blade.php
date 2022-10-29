@@ -15,7 +15,7 @@
                         <!-- @endcan -->
                         <div class="pull-right">
                             <!-- Crear un paciente nuevo "quitar" -->
-                            <a class="btn btn-warning" href="{{ route('expediente.create') }}">Nuevo</a>
+                            <a class="btn btn-warning" href="/">Volver a Pacientes</a>
                             
                             <!-- Se redirecciona a expediente -->
                             <form action="{{route('expediente.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
@@ -28,7 +28,9 @@
                         <br>
                         <table class="table table-striped mt-2">
                             <thead style="background-color: #6777ef">
-                                <th style="display: none">ID</th>
+                                <!--Agregar Numero de expediente no_expediente-->
+                                <th style="color: #fff">ID</th>
+                                <th style="color: #fff">No. de Expediente</th>
                                 <th style="color: #fff">Nombre</th>
                                 <th style="color: #fff">Apellido</th>
                                 <th style="color: #fff">Dirección</th>
@@ -43,7 +45,8 @@
                                     @else
                                     @foreach ($pacientes as $paciente)
                                     <tr>
-                                        <td style="display: none">{{ $paciente->id_Paciente }}</td>
+                                        <td>{{$paciente->id_Paciente}}</td>
+                                        <td>{{ $paciente->no_expediente}}</td>
                                         <td>{{ $paciente->Nombre_1." ".$paciente->Nombre_2 }}</td>
                                         <td>{{ $paciente->Apellido_1." ".$paciente->Apellido_2 }}</td>
                                         <td>{{ $paciente->Direccion }}</td>
@@ -58,11 +61,11 @@
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
 
-                                                <!--Boton de Vivienda-->
-                                                <a href="{{ route('expediente.create', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-address-book"></i></a>
+                                                <!--Boton de Crear-->
+                                                <a href="{{route('expediente.create',$paciente->id_Paciente)}}"class="btn btn-primary"><i class="fas fa-address-book"></i></a>
                                                 <!--Boton de Editar-->
-                                                <a href="{{ route('expediente.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                                <!--Boton de Egreso Familiar-->
+                                                <a href="{{route('expediente.edit',$paciente->id_Paciente)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                <!--Boton de Borrar-->
                                                 <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>

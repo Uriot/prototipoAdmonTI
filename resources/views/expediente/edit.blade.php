@@ -21,8 +21,6 @@
                             </button>s
                         </div>
                         @endif -->
-
-
                         {{ Form::model($expediente, ['method' => 'PUT','route' => ['expediente.update', $expediente->id]]) }}
                         <ul class="nav nav-tabs left-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
@@ -44,9 +42,35 @@
                             <!--Informacion Medica-->
                             <div class="tab-pane fade show active" id="InfoMedica" role="tabpanel" aria-labelledby="InfoMedica-tab">
                                 <div class="row gap-2">
+
                                     <div class="form-group">
-                                        <input type="hidden" name="idExpediente" value="{{$expediente->id}}" class="name1 form-control">
+                                        <input type="hidden" name="id_expediente" value="{{$expediente->id}}" class="name1 form-control">
+                                        <input type="hidden" name="" value="{{$expediente->no_expediente}}" class="name1 form-control">
                                     </div>
+
+
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">No. de expediente</label>
+                                            <input disabled type="text" name="" class="estimado form-control" value="{{$expediente->no_expediente}}">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Nombre</label>
+                                            <input disabled type="text" name="" class="estimado form-control" value="{{$expediente->Nombre_1}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Apellido</label>
+                                            <input disabled type="text" name="" class="estimado form-control" value="{{$expediente->Apellido_1}}">
+                                        </div>
+                                    </div>
+                                
+
+                                
 
                                     <div class="col-xs-12 col-sm-6 col-md-4 ">
                                         <div class="form-group">
@@ -74,8 +98,8 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Hipertenso</label>
                                             <select class="form-control" name="hipertenso" value="{{$expediente->hipertenso}}">
-                                                <option value="1" {{$expediente->hipertenso == 'SI' ? 'selected' : ''}}>Sí</option>
-                                                <option value="0" {{$expediente->hipertenso == 'NO' ? 'selected' : ''}}>No</option>
+                                                <option value="SI" {{$expediente->hipertenso == 'SI' ? 'selected' : ''}}>Sí</option>
+                                                <option value="NO" {{$expediente->hipertenso == 'NO' ? 'selected' : ''}}>No</option>
                                             </select>
                                             @if ($errors->has('hipertenso'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -87,8 +111,8 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Diabetico</label>
                                             <select class="form-control" name="diabetico" value="{{$expediente->diabetico}}">
-                                                <option value="1" {{$expediente->diabetico == 'SI' ? 'selected' : ''}}>Sí</option>
-                                                <option value="0" {{$expediente->diabetico == 'NO' ? 'selected' : ''}}>No</option>
+                                                <option value="SI" {{$expediente->diabetico == 'SI' ? 'selected' : ''}}>Sí</option>
+                                                <option value="NO" {{$expediente->diabetico == 'NO' ? 'selected' : ''}}>No</option>
                                             </select>
                                             @if ($errors->has('diabetico'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -100,8 +124,8 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Cardiopatia</label>
                                             <select class="form-control" name="cardiopatia" value="{{$expediente->cardiopatia}}">
-                                                <option value="1" {{$expediente->cardiopatia == 'SI' ? 'selected' : ''}}>Sí</option>
-                                                <option value="0" {{$expediente->cardiopatia == 'NO' ? 'selected' : ''}}>No</option>
+                                                <option value="SI" {{$expediente->cardiopatia == 'SI' ? 'selected' : ''}}>Sí</option>
+                                                <option value="NO" {{$expediente->cardiopatia == 'NO' ? 'selected' : ''}}>No</option>
                                             </select>
                                             @if ($errors->has('cardiopatia'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -111,10 +135,10 @@
 
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
-                                            <label class="font-weight-bold" style="font-size: 1rem;">Fistula</label>
-                                            <select class="form-control" name="fistula" value="{{$expediente->fistula}}">
-                                                <option value="1" {{$expediente->fistula == 'SI' ? 'selected' : ''}}>Sí</option>
-                                                <option value="0" {{$expediente->fistula == 'NO' ? 'selected' : ''}}>No</option>
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Vascular</label>
+                                            <select class="form-control" name="id_A_Vascular" value="{{$expediente->id_A_Vascular}}">
+                                                <option value="1" {{$expediente->id_A_Vascular == '1' ? 'selected' : ''}}>Fistula</option>
+                                                <option value="2" {{$expediente->id_A_Vascular == '2' ? 'selected' : ''}}>Cateter</option>
                                             </select>
                                             @if ($errors->has('fistula'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -122,30 +146,25 @@
                                         </div>
                                     </div>
 
+
+
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Tipo de Sangre</label>
-                                            <select class="form-control" name="tipo_sangre" value="{{$expediente->tipo_sangre}}">
-                                            <option value="0" {{$expediente->tipo_sangre == 'A' ? 'selected' : ''}}>A</option>
-                                                <option value="1" {{$expediente->tipo_sangre == 'B' ? 'selected' : ''}}>B</option>                                               
-                                                <option value="2" {{$expediente->tipo_sangre == 'AB' ? 'selected' : ''}}>AB</option>
-                                                <option value="3" {{$expediente->tipo_sangre == 'O' ? 'selected' : ''}}>O</option>
-                                            </select>
-                                            @if ($errors->has('tipo_sangre'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
-                                            @endif
+                                            <input type="text" name="tipo_sangre" class="edad form-control" value="{{$expediente->tipo_sangre}}">
                                         </div>
                                     </div>
+
 
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Tratamiento</label>
                                             <select class="form-control" name="tratamientos" value="{{$expediente->tratamientos}}">
-                                            <option value="0" {{$expediente->tratamientos == 'NO TIENE' ? 'selected' : ''}}>NO TIENE</option>
-                                                <option value="1" {{$expediente->tratamientos == 'HEMODIALISIS' ? 'selected' : ''}}>HEMODIALISIS</option>                                               
-                                                <option value="2" {{$expediente->tratamientos == 'DIALISIS PERITONEAL' ? 'selected' : ''}}>DIALISIS PERITONEAL</option>
-                                                <option value="3" {{$expediente->tratamientos == 'TRASPLANTE DE RIÑON' ? 'selected' : ''}}>TRASPLANTE DE RIÑON</option>
-                                                <option value="4" {{$expediente->tratamientos == 'TRATAMIENTO CONSERVADOR' ? 'selected' : ''}}>TRATAMIENTO CONSERVADOR</option>
+                                            <option value="NO TIENE" {{$expediente->tratamientos == 'NO TIENE' ? 'selected' : ''}}>NO TIENE</option>
+                                                <option value="HEMODIALIS" {{$expediente->tratamientos == 'HEMODIALISIS' ? 'selected' : ''}}>HEMODIALISIS</option>                                               
+                                                <option value="DIALISIS PERITONEAL" {{$expediente->tratamientos == 'DIALISIS PERITONEAL' ? 'selected' : ''}}>DIALISIS PERITONEAL</option>
+                                                <option value="TRASPLANTE DE RIÑON" {{$expediente->tratamientos == 'TRASPLANTE DE RIÑON' ? 'selected' : ''}}>TRASPLANTE DE RIÑON</option>
+                                                <option value="TRATAMIENTO CONSERVADOR" {{$expediente->tratamientos == 'TRATAMIENTO CONSERVADOR' ? 'selected' : ''}}>TRATAMIENTO CONSERVADOR</option>
                                             </select>
                                             @if ($errors->has('tratamientos'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
@@ -194,7 +213,20 @@
 
                             <!--Informacion Vivienda-->
                             <div class="tab-pane fade" id="InfoVi" role="tabpanel" aria-labelledby="InfoVi-tab">
-                              
+                            <div class="row gap-2">
+                                     <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Tipo Vivienda</label>
+                                            <select class="form-control" name="tipo_vivienda" value="{{$expediente->vehiculo_propio}}">
+                                                <option value="PROPIA" {{$expediente->tipo_vivienda == 'PROPIA' ? 'selected' : ''}}>Propia</option>
+                                                <option value="ALQUILER" {{$expediente->tipo_vivienda == 'ALQUILER' ? 'selected' : ''}}>Alquiler</option>
+                                            </select>
+                                            @if ($errors->has('tipo_vivienda'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Vehiculo Propio</label>
@@ -220,10 +252,29 @@
                                             @endif
                                         </div>
                                     </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Numero de hijos en la familia</label>
+                                            <input type="number" name="no_hijos" value="{{$expediente->no_hijos}}" class="lastName1 form-control">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Total del nucleo familiar</label>
+                                            <input type="number" name="total_nucleo_familiar" value="{{$expediente->total_nucleo_familiar}}" class="lastName1 form-control">
+                                        </div>
+                                    </div>
+
+
+
                             <!--Botones-->  
 
                             <div class="col-xs-12 col-sm-6 col-md-4">
                                     <div class="text-center mb-1">
+                                    <label class="font-weight-bold" style="font-size: 1rem;">Volver a tabla Expedientes</label>
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
                                    
@@ -233,6 +284,7 @@
                                     
                                    
                                       
+                            </div>
                             </div>
                             <!--Fin InfoVivienda-->
 
@@ -256,7 +308,7 @@
                                                 <option value="SI" {{$expediente->sector_publico == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->sector_publico == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
-                                            @if ($errors->has('genero'))
+                                            @if ($errors->has('sector_publico'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -269,7 +321,7 @@
                                                 <option value="SI" {{$expediente->sector_privado == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->sector_privado == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
-                                            @if ($errors->has('genero'))
+                                            @if ($errors->has('sector_privado'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -282,7 +334,7 @@
                                                 <option value="SI" {{$expediente->negocio_propio == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->negocio_propio == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
-                                            @if ($errors->has('genero'))
+                                            @if ($errors->has('negocio_propio'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -295,7 +347,7 @@
                                                 <option value="SI" {{$expediente->remesas == 'SI'  ? 'selected' : ''}}>SI</option>
                                                 <option value="NO" {{$expediente->remesas == 'NO'  ? 'selected' : ''}}>NO</option>
                                             </select>
-                                            @if ($errors->has('genero'))
+                                            @if ($errors->has('remesas'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
                                         </div>
@@ -317,7 +369,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="total_aproximado" class="edad form-control" value="{{$expediente->total_aproximado}}">
+                                            <input type="number" name="total_aproximado_i" class="edad form-control" value="{{$expediente->total_aproximado_i}}">
                                         </div>
                                     </div>
 
@@ -351,7 +403,7 @@
 
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
-                                            <label class="font-weight-bold" style="font-size: 1rem;" onchange="sumar();" >Estimado economico en Educacion por mes por mes (aprox.) en Quetzales</label>
+                                            <label class="font-weight-bold" style="font-size: 1rem;" >Estimado economico en Educacion por mes por mes (aprox.) en Quetzales</label>
                                             <input type="number" name="educacion" id = "estimado2" class="estimado form-control" value="{{$expediente->educacion}}" oninput="sumar()">
                                         </div>
                                 </div>
@@ -359,7 +411,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;" >Estimado economico en Arrendamiento por mes (aprox.) en Quetzales</label>
-                                            <input type="number" name="arrendamiento" id = "estimado3" class="estimado form-control" value="{{$expediente->arrendamiento}} " oninput="sumar()"> 
+                                            <input type="number" name="arrendamiento" id = "estimado3" class="estimado form-control" value="{{$expediente->arrendamiento}}" oninput="sumar()"> 
                                         </div>
                                 </div>
 
@@ -381,6 +433,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estimado economico en Renta por mes (aprox.) en Quetzales</label>
                                             <input type="number" name="renta" id = "estimado6" class="estimado form-control" value="{{$expediente->renta}}" oninput="sumar()">
+                                        
                                         </div>
                                 </div>
 
@@ -388,6 +441,10 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Costos de traslado (aprox.) en Quetzales </label>
                                             <input type="number" name="costos_traslado" id = "estimado7" class="estimado form-control" value="{{$expediente->costos_traslado}}" oninput="sumar()">
+                                            @if ($errors->has('costos_traslado'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
+                                            @endif
+                                        
                                         </div>
                                 </div>
 
@@ -395,7 +452,7 @@
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Total Aproximado</label>
 
-                                            <input disabled type="number" name="total_aproximado" id ="total" class="estimado form-control" placeholder="Ingrese un valor para realizar suma">
+                                            <input readonly type="number" name="total_aproximado_e" id ="total" class="total_aproximado form-control" value="{{$expediente->total_aproximado_e}}" placeholder="Ingrese un valor para realizar suma" change="">
 
                                         </div>
                                 </div>
@@ -407,7 +464,7 @@
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">ACTUALIZAR <i class="fas fa-mask"></i></button>
+                                    <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">Actualizar <i class="fas fa-save"></i></button>
                                     </div>
                                 </div>
                                 <!--Botones-->
@@ -437,10 +494,12 @@
 @endsection
 @section('scripts')
 
-                                <!--Sumatoria Script-->
 
+                                <!--Sumatoria Script-->
+                                
                                 <script type="text/javascript">
                                 // si la respuesta que se espera es sumar
+                                
                                 function sumar() {
                                     try {
                                     var a = parseInt(document.getElementById("estimado1").value) || 0,
@@ -451,6 +510,9 @@
                                     f = parseInt(document.getElementById("estimado6").value) || 0,
                                     g = parseInt(document.getElementById("estimado7").value) || 0;
 
+
+                                    
+
                                     document.getElementById("total").value = a + b + c + d + e + f + g ;
                                         } catch (e) {}
                                                 }
@@ -459,78 +521,19 @@
                                 <!--FIN Sumatoria Script-->
 
 
+                                <!--Sumatoria Script-->
+                                
+                                <script type="text/javascript">
+                                // si la respuesta que se espera es sumar
+                                
+                                function cambios() {
+                                    try {
+                                    var a = parseInt(document.getElementById("total").value) || 0;
+                                    document.getElementById("total").value = a;
+                                        } catch (e) {}
+                                                }
+                                </script>
 
-<script>
-    $(document).ready(function() {
-        $('.telefonoCasa').inputmask('9999-9999');
-        $('.telefono').inputmask('9999-9999');
-        $('.dpi').inputmask('9999 99999 9999');
-    });
+                                <!--FIN Sumatoria Script-->
 
-    window.addEventListener("load", function() {
-        let tabs = document.querySelectorAll(".left-tabs a");
-
-        let nextTab = document.getElementById("v-pills-next-tab");
-
-        let i = 0;
-
-        nextTab.addEventListener("click", function() {
-
-            // i = (i == (tabs.length - 1)) ? 0 : i + 1;
-            tabs[1].click();
-
-        }, false);
-    }, false);
-
-    window.addEventListener("load", function() {
-        let tabs = document.querySelectorAll(".left-tabs a");
-
-        let nextTab = document.getElementById("v-pills-back-tab");
-
-        nextTab.addEventListener("click", function() {
-
-            tabs[0].click();
-
-        }, false);
-    }, false);
-
-    document.getElementById('deptoOrigen').addEventListener('change', (e) => {
-        const idDepartamento = e.target.value;
-        $.getJSON(`municipiosGet/${idDepartamento}`, function(municipiosData) {
-            let htmlOptionsMunicipios = '';
-            municipiosData.length === 0 ? htmlOptionsMunicipios += `<option value="">no hay municipios disponibles</option>` :
-                municipiosData.forEach(function(datamunicipiosoptions) {
-                    htmlOptionsMunicipios += `<option value="${datamunicipiosoptions.ID_MUNICIPIO}">${datamunicipiosoptions.MUNICIPIO}</option>`
-                })
-
-            $("#muniOrigen").html(htmlOptionsMunicipios);
-        })
-    })
-
-    document.getElementById('deptoActual').addEventListener('change', (e) => {
-        const idDepartamento = e.target.value;
-        $.getJSON(`municipiosGet/${idDepartamento}`, function(municipiosData) {
-            let htmlOptionsMunicipios = '';
-            municipiosData.length === 0 ? htmlOptionsMunicipios += `<option value="">no hay municipios disponibles</option>` :
-                municipiosData.forEach(function(datamunicipiosoptions) {
-                    htmlOptionsMunicipios += `<option value="${datamunicipiosoptions.ID_MUNICIPIO}">${datamunicipiosoptions.MUNICIPIO}</option>`
-                })
-
-            $("#muniActual").html(htmlOptionsMunicipios);
-        })
-    })
-
-    document.getElementById('deptoActualGeneral').addEventListener('change', (e) => {
-        const idDepartamento = e.target.value;
-        $.getJSON(`municipiosGet/${idDepartamento}`, function(municipiosData) {
-            let htmlOptionsMunicipios = '';
-            municipiosData.length === 0 ? htmlOptionsMunicipios += `<option value="">no hay municipios disponibles</option>` :
-                municipiosData.forEach(function(datamunicipiosoptions) {
-                    htmlOptionsMunicipios += `<option value="${datamunicipiosoptions.ID_MUNICIPIO}">${datamunicipiosoptions.MUNICIPIO}</option>`
-                })
-
-            $("#muniActualGeneral").html(htmlOptionsMunicipios);
-        })
-    })
-</script>
 @endsection
