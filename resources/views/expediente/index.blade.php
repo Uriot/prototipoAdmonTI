@@ -64,8 +64,6 @@
                                                 <a href="{{route('expediente.create',$paciente->id_Paciente)}}"class="btn btn-primary"><i class="fas fa-address-book"></i></a>
                                                 <!--Boton de Editar-->
                                                 <a href="{{route('expediente.edit',$paciente->id_Paciente)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                                <!--Boton de Borrar-->
-                                                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>
