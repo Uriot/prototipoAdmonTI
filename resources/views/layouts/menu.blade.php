@@ -5,9 +5,9 @@
     <a class="nav-link" href="/users">
         <i class=" fas fa-users"></i><span>Usuarios</span>
     </a>
-    <a class="nav-link" href="/roles">
+    {{-- <a class="nav-link" href="/roles">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
-    </a>
+    </a> --}}
     <a class="nav-link" href="/pacientes">
         <i class="fas fa-user-injured"></i><span>Pacientes</span>
     </a>
