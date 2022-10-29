@@ -5,7 +5,7 @@ $(function() {
     if (!!scheds) {
         Object.keys(scheds).map(k => {
             var row = scheds[k]
-            events.push({ id: row.id, title: row.title, start: row.start_datetime, end: row.end_datetime });
+            events.push({ id: row.id_asistencias, title: row.title, start: row.fecha_asistencia, end: row.end_datetime });
         })
     }
     var date = new Date()

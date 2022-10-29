@@ -1,155 +1,179 @@
-@extends('layouts.app')
+ <!DOCTYPE html>
+ <html>
 
-@section('content')
+ <head>
+     <title>Calendario de Asistencias</title>
+
+     <meta name="csrf-token" content="{{ csrf_token() }}" />
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.css" />
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.js"></script>
+
+     @yield('page_css')
+     <!-- Template CSS -->
+     <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+     <link rel="stylesheet" href="{{ asset('web/css/components.css')}}">
+     @yield('page_css')
+
+     @yield('css')
+ </head>
+
+ <body class="bg-light">
+
+     <div id="app">
+         <div class="main-wrapper main-wrapper-1">
+             <div class="navbar-bg"></div>
+             <nav class="navbar navbar-expand-lg main-navbar">
+                 <form class="form-inline mr-auto" action="#">
+                     <ul class="navbar-nav mr-3">
+                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"> </a></li>
+                     </ul>
+                 </form>
+                 <div>
+                     <a href="{{ route('pacientes.index') }}" class="nav-link nav-link-lg nav-link-user">
+
+                         <div class="d-sm-none d-lg-inline-block">
+                             <i class="fa-solid fa-chevron-left"></i> REGRESAR
+                         </div>
+                     </a>
+                 </div>
+
+             </nav>
+             <div class="main-content pl-0 px-1">
+
+                 <div class="container container2 pt-3 px-0">
+
+                     <h1 class="text-left py-3 " style="color:#6c757d;">Calendario de Asistencias </h1>
 
 
+                     <div class="row">
+                         <div class=" col-md-9 col-sm-12 calendarDiv order-2">
 
-<!DOCTYPE html>
-<html lang="es">
+                             <div id="calendar"></div>
+                         </div>
+                         <div class="col-md-3 col-sm-12 cardDiv order-1 ">
+                             <div class="row">
+                                 <div class="col">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asistencia</title>
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./fullcalendar/lib/main.min.css">
-    <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src="./js/bootstrap.min.js"></script>
-    <script src="./fullcalendar/lib/main.min.js"></script>    
-    <style>
-        :root {
-            --bs-success-rgb: 71, 222, 152 !important;
-        }
+                                     <div class="card rounded-0 shadow">
+                                         <div class="card-header bg-gradient bg-primary text-light">
+                                             <h5 class="card-title">Asignar asistencia</h5>
+                                         </div>
+                                         {{ Form::model($id_Paciente, ['method' => 'PUT','route' => ['asistencia.update', $id_Paciente]]) }}
+                                         <div class="card-body">
+                                             <div class="container-fluid">
+                                                 <input type="hidden" value="{{$id_Paciente}}" name="id_Paciente" id="id_Paciente">
 
-        html,
-        body {
-            height: 100%;
-            width: 100%;
-            font-family: Apple Chancery, cursive;
-        }
 
-        .btn-info.text-light:hover,
-        .btn-info.text-light:focus {
-            background: #000;
-        }
-        table, tbody, td, tfoot, th, thead, tr {
-            border-color: #ededed !important;
-            border-style: solid;
-            border-width: 1px !important;
-        }
-    </style>
-</head>
-<div>
-                <b class="text-light">Calendario de Asistencia</b>
-            </div>
-<body class="bg-light">
-   
-    <div class="container py-5" id="page-container">
-        <div class="row">
-            <div class="col-md-9">
-                <div id="asistencia"></div>
-            </div>
-          
-        
+                                                 <div class="form-group mb-2">
+                                                     <label for="start_datetime" class="control-label">Fecha y hora</label>
+                                                     <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
+                                                 </div>
 
-           
-       
+                                                 <div class="form-group mb-2">
+                                                     <label for="description" class="control-label">Observación</label>
+                                                     <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                         <div class="card-footer">
+                                             <div class="text-center">
+                                                 <button class="btn btn-primary btn-sm rounded-0" type="submit"><i class="fa fa-save"></i> Guardar</button>
+                                                 <button class="btn btn-default border btn-sm rounded-0" type="reset"><i class="fa fa-reset"></i> Cancelar</button>
+                                             </div>
+                                         </div>
+                                         {{ Form::close() }}
+                                     </div>
+                                 </div>
 
-            <div class="col-md-3">
-                <div class="cardt rounded-0 shadow">
-                    <div class="card-header bg-gradient bg-primary text-light">
-                        <h5 class="card-title">Crear Evento</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="container-fluid">
-                            <form action="save_schedule.php" method="post" id="schedule-form">
-                                <input type="hidden" name="id" value="">
-                                <div class="form-group mb-2">
-                                    <label for="title" class="control-label">id_paciente</label>
-                                    <input type="text" class="form-control form-control-sm rounded-0" name="title" id="title" required>
-                                </div>
+                             </div>
+                         </div>
+                     </div>
 
-                                <div class="form-group mb-2">
-                                    <label for="start_datetime" class="control-label">fecha_asistencia</label>
-                                    <input type="datetime-local" class="form-control form-control-sm rounded-0" name="start_datetime" id="start_datetime" required>
-                                </div>
+                 </div>
 
-                                <div class="form-group mb-2">
-                                    <label for="description" class="control-label">observacion</label>
-                                    <textarea rows="3" class="form-control form-control-sm rounded-0" name="description" id="description" required></textarea>
-                                </div>
-                                
-                               
-                            </form>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="text-center">
-                            <button class="btn btn-primary btn-sm rounded-0" type="submit" form="schedule-form"><i class="fa fa-save"></i> Guardar</button>
-                            <button class="btn btn-default border btn-sm rounded-0" type="reset" form="schedule-form"><i class="fa fa-reset"></i> Cancelar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Event Details Modal -->
-    <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="event-details-modal">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content rounded-0">
-                <div class="modal-header rounded-0">
-                    <h5 class="modal-title">Detalles de evento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body rounded-0">
-                    <div class="container-fluid">
-                        <dl>
-                            <dt class="text-muted">Nombre</dt>
-                            <dd id="title" class="fw-bold fs-4"></dd>
-                            <dt class="text-muted">Descripción</dt>
-                            <dd id="description" class=""></dd>
-                            <dt class="text-muted">Inicio</dt>
-                            <dd id="start" class=""></dd>
-                            <dt class="text-muted">Fin</dt>
-                            <dd id="end" class=""></dd>
-                        </dl>
-                    </div>
-                </div>
-                <div class="modal-footer rounded-0">
-                    <div class="text-end">
-                        <button type="button" class="btn btn-primary btn-sm rounded-0" id="edit" data-id="">Editar</button>
-                        <button type="button" class="btn btn-danger btn-sm rounded-0" id="delete" data-id="">Eliminar</button>
-                        <button type="button" class="btn btn-secondary btn-sm rounded-0" data-bs-dismiss="modal">Cerrar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Event Details Modal -->
-                              
-<?php 
+             </div>
+         </div>
+     </div>
 
-$sched_res = [];
+     <script>
+         $(document).ready(function() {
 
- 
+             const eventos = @json($events);
 
-?>
+             $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
 
-</body>
+             $('#calendar').fullCalendar({
 
-<script src="./js/es.js"></script> <!--Idioma español Fullcalendar-->
-<script>
-    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
-</script>
-<script src="./js/asistencia.js"></script>
+                 header: {
+                     left: 'prev,next today',
+                     center: 'title',
+                     right: 'month,agendaWeek,agendaDay'
+                 },
+                 events: eventos,
+                 selectable: true,
+                 selectHelper: true,
+                 select: function(start, end, allDay) {
 
-</html>
+                 },
+                 editable: false,
+                 eventResize: function(event, delta) {
+                     var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                     var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                     var title = event.title;
+                     var id = event.id;
+                     $.ajax({
+                         url: "/full-calender/action",
+                         type: "POST",
+                         data: {
+                             title: title,
+                             start: start,
+                             end: end,
+                             id: id,
+                             type: 'update'
+                         },
+                         success: function(response) {
+                             calendar.fullCalendar('refetchEvents');
+                             alert("Event Updated Successfully");
+                         }
+                     })
+                 },
+                 eventDrop: function(event, delta) {
+                     var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+                     var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+                     var title = event.title;
+                     var id = event.id;
+                     $.ajax({
+                         url: "/full-calender/action",
+                         type: "POST",
+                         data: {
+                             title: title,
+                             start: start,
+                             end: end,
+                             id: id,
+                             type: 'update'
+                         },
+                         success: function(response) {
+                             calendar.fullCalendar('refetchEvents');
+                             alert("Event Updated Successfully");
+                         }
+                     })
+                 },
 
-@endsection
-@section('scripts')
-<script>
-    
-</script> 
-@endsection
+                 eventClick: null
+             });
+
+         });
+     </script>
+
+ </body>
+
+ </html>
