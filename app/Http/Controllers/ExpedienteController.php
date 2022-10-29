@@ -209,7 +209,7 @@ class ExpedienteController extends Controller
              from tb_informacion_medica im
               inner join tb_expedientes te
               on im.id_infomedico = te.id_infomedico
-              INNER join tb_paciente p
+              RIGHT join tb_paciente p
               on p.id_paciente=im.id_paciente
               inner join tb_vivienda v
               on v.id_vivienda=te.id_vivienda

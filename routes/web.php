@@ -39,6 +39,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('expediente', ExpedienteController::class);
 
     //! Rutas de peticiones get especificas
+    // Route::get('asistencia/{id}/asistenciasGet/{idGet}', [AsistenciaController::class, 'asistenciasGet']);
+    // Route::get('full-calender', [AsistenciaController::class, 'edit']);
+    Route::get('full-calender/action', [AsistenciaController::class, 'action']);
+   
     Route::get('reporte/pacientes', [ReportsController::class, 'patients'])->name('reports.patients');
     Route::get('reporte/pacientes/pdf', [ReportsController::class, 'patientsToPDF'])->name('reports.patientsToPDF');
     Route::get('reporte/pacientes/excel', [ReportsController::class, 'patientsToExcel'])->name('reports.patientsToExcel');
