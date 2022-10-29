@@ -53,7 +53,7 @@
                                                 <a href="{{ '/reportes/paciente/expediente/' . $paciente->id_Paciente }}" class="btn btn-secondary"><i class="fas fa-print"></i></a>
                                                 <a href="{{ route('pacientes.show', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
-                                                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                <a href="" class="btn btn-danger" onclick="myFunction(0,  <?=$paciente->id_Paciente?>)"><i class="fas fa-trash"></i></a>
                                                 <a href="{{ route('asistencia.show', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
                                             </div>
                                         </td>
@@ -76,8 +76,7 @@
 @section('scripts')
 <script>
 
-    function myFunction(estado, id) {
-        console.log('')
+    function myFunction(estado, id) { 
         $.getJSON(`updateState/paciente/${id}/estado/${estado}`, function(response) {
             console.log(response)
         

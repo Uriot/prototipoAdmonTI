@@ -20,6 +20,7 @@ class PacientesController extends Controller
             $texto = trim($request->get('texto'));
             $pacientes = DB::table('tb_paciente')
                 ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1', 'id_estado_paciente')
+                ->where('id_estado_paciente', '<>', 0)
                 ->orderBY('Nombre_1')
                 ->paginate(6);
         } else {
@@ -28,6 +29,7 @@ class PacientesController extends Controller
             //$pacientes = Patient::paginate(6);
             $pacientes = DB::table('tb_paciente')
                 ->select('id_Paciente', 'Nombre_1', 'Nombre_2', 'Apellido_1', 'Apellido_2', 'Direccion', 'Celular_1', 'id_estado_paciente')
+                ->where('id_estado_paciente', '<>', 0,'and')
                 ->where('Nombre_1', 'LIKE', '%' . $texto . '%')
                 ->orwhere('Nombre_2', 'LIKE', '%' . $texto . '%')
                 ->orwhere('Apellido_1', 'LIKE', '%' . $texto . '%')
@@ -35,7 +37,7 @@ class PacientesController extends Controller
                 ->orderBY('Nombre_1')
                 ->paginate(6);
         }
-        $estados = DB:: select('select id_estado_paciente as id, estado as nombre from tb_estado_paciente');
+        $estados = DB:: select('select id_estado_paciente as id, estado as nombre from tb_estado_paciente where id_estado_paciente <> 0');
         return view('pacientes.index', compact('pacientes', 'texto', 'estados'));
     }
     
