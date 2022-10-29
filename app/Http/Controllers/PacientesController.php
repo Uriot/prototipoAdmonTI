@@ -180,7 +180,7 @@ class PacientesController extends Controller
         $valueFormat = json_encode($values);
         $valueFormat = str_replace("[", "", $valueFormat);
         $valueFormat = str_replace("]", "", $valueFormat);
-        DB::select('call PR_PACIENTES(' . $valueFormat . ')');
+        DB::select('call SP_PACIENTE(' . $valueFormat . ')');
 
 
         return redirect()->route('pacientes.index')
