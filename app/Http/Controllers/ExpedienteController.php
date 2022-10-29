@@ -210,74 +210,93 @@ class ExpedienteController extends Controller
     public function edit($id_Expediente)
     {     
        
+        try
+        {
+        //write your codes here
 
-       $expedientes = DB::select('Select 
+        $expedientes = DB::select('Select 
     
-       te.id_Expedientes AS id,
-              p.Nombre_1,
-              p.Apellido_1,
-              p.no_expediente,
-              im.fecha_diagnostico, 
-              im.fecha_ingreso, 
-              im.hipertenso, 
-              im.diabetico, 
-              im.cardiopatia, 
-              im.id_A_Vascular, 
-              im.tipo_sangre, 
-              im.tratamientos, 
-              im.peso, 
-              im.Otros, 
-              im.Observacion,
-              v.tipo_vivienda,
-              v.vehiculo_propio,
-              v.tipo_vehiculo,
-              v.no_hijos,
-              v.total_nucleo_familiar,
-              c.personas_laboran,
-              c.sector_publico,
-              c.sector_privado,
-              c.negocio_propio,
-              c.remesas,
-              c.ayuda_social,
-              c.total_aproximado_i,
-              e.alimentacion,
-              e.educacion,
-              e.arrendamiento,
-              e.servicios,
-              e.salud,
-              e.renta,
-              e.costos_traslado,
-              e.total_aproximado_e
+        te.id_Expedientes AS id,
+               p.Nombre_1,
+               p.Apellido_1,
+               p.no_expediente,
+               im.fecha_diagnostico, 
+               im.fecha_ingreso, 
+               im.hipertenso, 
+               im.diabetico, 
+               im.cardiopatia, 
+               im.id_A_Vascular, 
+               im.tipo_sangre, 
+               im.tratamientos, 
+               im.peso, 
+               im.Otros, 
+               im.Observacion,
+               v.tipo_vivienda,
+               v.vehiculo_propio,
+               v.tipo_vehiculo,
+               v.no_hijos,
+               v.total_nucleo_familiar,
+               c.personas_laboran,
+               c.sector_publico,
+               c.sector_privado,
+               c.negocio_propio,
+               c.remesas,
+               c.ayuda_social,
+               c.total_aproximado_i,
+               e.alimentacion,
+               e.educacion,
+               e.arrendamiento,
+               e.servicios,
+               e.salud,
+               e.renta,
+               e.costos_traslado,
+               e.total_aproximado_e
+        
+              from tb_informacion_medica im
+               inner join tb_expedientes te
+               on im.id_infomedico = te.id_infomedico
+               INNER join tb_paciente p 
+               on p.id_paciente=im.id_paciente
+               inner join tb_vivienda v 
+               on v.id_vivienda=te.id_vivienda
+               inner join tb_ingreso_familiar c 
+               on c.id_ingreso_familiar=te.id_ingreso_familiar
+               INNER join tb_egreso_familiar e 
+               on e.id_egreso_familiar=te.id_egreso_familiar
+               where p.id_paciente=' . $id_Expediente);
+ 
        
-             from tb_informacion_medica im
-              inner join tb_expedientes te
-              on im.id_infomedico = te.id_infomedico
-              INNER join tb_paciente p 
-              on p.id_paciente=im.id_paciente
-              inner join tb_vivienda v 
-              on v.id_vivienda=te.id_vivienda
-              inner join tb_ingreso_familiar c 
-              on c.id_ingreso_familiar=te.id_ingreso_familiar
-              INNER join tb_egreso_familiar e 
-              on e.id_egreso_familiar=te.id_egreso_familiar
-              where p.id_paciente=' . $id_Expediente);
+ 
+        foreach ($expedientes as $pass) {
+         $expediente = $pass;
+         }
+                         
+         
+         //$expediente = Expediente::find($id_infomedico);
+         //var_dump($expediente->id_infomedico);
+         //die();
+ 
+ 
+         
+         // $pacientes = Pacientes::find($id_Paciente); 
+         // $pacientes = Pacientes::find($id_Paciente);
+         return view('expediente.edit', compact('expediente'));
+ 
 
-      
 
-       foreach ($expedientes as $pass) {
-        $expediente = $pass;
         }
-                        
-        
-        //$expediente = Expediente::find($id_infomedico);
-        //var_dump($expediente->id_infomedico);
-        //die();
+        catch(Exception $e)
+        {
+           
+                echo "<script>alert('Este registro ya se editó, intente con otro');</script>";
+                
+
+                return view('home');
 
 
-        
-        // $pacientes = Pacientes::find($id_Paciente); 
-        // $pacientes = Pacientes::find($id_Paciente);
-        return view('expediente.edit', compact('expediente'));
+
+
+        }
         
 
 
