@@ -41,53 +41,44 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Número de Expendiente*</label>
-                                            <input type="text" disabled name="noExpediente" value="{{$pacientes->noExpediente}}" class="noExpediente form-control">
-                                            @if ($errors->has('noExpediente'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
-                                            @endif
+                                            <input disabled type="text" name="noExpediente" value="{{$pacientes->noExpediente}}" class="noExpediente form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Primer Nombre*</label>
                                             <!-- {{ Form::text('primer_Nombre', null, ['placeholder' => 'Nombre','class' => 'form-control']) }} -->
-                                            <input type="text" disabled name="name1" value="{{$pacientes->nombre_1}}" class="name1 form-control">
-                                            @if ($errors->has('name1'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
-                                            @endif
+                                            <input disabled type="text" name="name1" value="{{$pacientes->nombre_1}}" class="name1 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Segundo Nombre</label>
-                                            <input type="text" disabled name="name2" value="{{$pacientes->nombre_2}}" class="name2 form-control">
+                                            <input disabled type="text" name="name2" value="{{$pacientes->nombre_2}}" class="name2 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Tercer Nombre</label>
-                                            <input type="text" disabled name="name3" value="{{$pacientes->nombre_3}}" class="name3 form-control">
+                                            <input disabled type="text" name="name3" value="{{$pacientes->nombre_3}}" class="name3 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Primer Apellido*</label>
-                                            <input type="text" disabled name="lastName1" value="{{$pacientes->apellido_1}}" class="lastName1 form-control">
-                                            @if ($errors->has('lastName1'))
-                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
-                                            @endif
+                                            <input disabled type="text" name="lastName1" value="{{$pacientes->apellido_1}}" class="lastName1 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Segundo Apellido</label>
-                                            <input type="text" disabled name="lastName2" value="{{$pacientes->apellido_2}}" class="lastName2 form-control">
+                                            <input disabled type="text" name="lastName2" value="{{$pacientes->apellido_2}}" class="lastName2 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellido de Casada</label>
-                                            <input type="text" disabled name="lastName3" value="{{$pacientes->apellido_de_casada}}" class="lastName3 form-control">
+                                            <input disabled type="text" name="lastName3" value="{{$pacientes->apellido_de_casada}}" class="lastName3 form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -102,49 +93,62 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estado Civil</label>
-                                            <input type="text" disabled name="estadoCivil" value="{{$pacientes->estado_civil}}" class="lastName3 form-control">
+                                            <select disabled class="form-control" value="{{$pacientes->estado_civil}}" name="estadoCivil">
+                                                <option value="Soltero (a)" {{$pacientes->estado_civil == 'Soltero (a)'  ? 'selected' : ''}}>Soltero (a)</option>
+                                                <option value="Casado (a)" {{$pacientes->estado_civil == 'Casado (a)'  ? 'selected' : ''}}>Casado (a)</option>
+                                                <option value="Divorciado (a)" {{$pacientes->estado_civil == 'Divorciado (a)'  ? 'selected' : ''}}>Divorciado (a)</option>
+                                                <option value="Viudo (a)" {{$pacientes->estado_civil == 'Viudo (a)'  ? 'selected' : ''}}>Viudo (a)</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nacionalidad</label>
-                                            <input type="text" disabled name="nacionalidad" value="{{$pacientes->nacionalidad}}" class="nacionalidad form-control">
+                                            <input disabled type="text" name="nacionalidad" value="{{$pacientes->nacionalidad}}" class="nacionalidad form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4 ">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Fecha de Nacimiento*</label>
-                                            <input type="date" disabled name="fechaNacimiento" value="{{$pacientes->fecha_nacimiento}}" class=" form-control">
+                                            <input disabled type="date" name="fechaNacimiento" value="{{$pacientes->fecha_nacimiento}}" class=" form-control">
+                                            <!-- {{ Form::date('fechaNacimiento', $pacientes->fecha_nacimiento, ['class' => 'form-control']) }} -->
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Edad</label>
-                                            <input type="number" disabled name="edad" class="edad form-control" value="{{$pacientes->edad}}">
+                                            <input disabled type="number" name="edad" class="edad form-control" value="{{$pacientes->edad}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Acceso al IGSS</label>
-                                            <input type="text" disabled name="accesoIGSS" value="{{$pacientes->acceso_al_igss}}" class="nacionalidad form-control">
+                                            <select disabled class="form-control" name="accesoIGSS" value="{{$pacientes->acceso_al_igss}}">
+                                                <option value="1" {{$pacientes->acceso_al_igss == '1' ? 'selected' : ''}}>Sí</option>
+                                                <option value="0" {{$pacientes->acceso_al_igss == '0' ? 'selected' : ''}}>No</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">DPI/CUI</label>
-                                            <input type="text" disabled name="dpi" class="dpi form-control" value="{{$pacientes->dpi}}">
+                                            <input disabled type="text" name="dpi" class="dpi form-control" value="{{$pacientes->dpi}}">
                                         </div>
                                     </div>
                                     <div class=" col-xs-12 col-sm-6 col-md-4 ">
                                         <div class=" form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Fecha de Vencimiento DPI</label>
-                                            <input type="date" disabled name="dpiFechaVencimiento" value="{{$pacientes->fecha_vencimiento_dpi}}" class="form-control">
+                                            <input disabled type="date" name="dpiFechaVencimiento" value="{{$pacientes->fecha_vencimiento_dpi}}" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Estado del DPI</label>
-                                            <input type="text" disabled name="estadoDPI" value="{{$pacientes->estado_dpi}}" class="nacionalidad form-control">
+                                            <select disabled class="form-control" name="estadoDPI" value="{{$pacientes->estado_dpi}}">
+                                                <option value="0" {{$pacientes->estado_dpi == '0'  ? 'selected' : ''}}>No tramitado</option>
+                                                <option value="1" {{$pacientes->estado_dpi == '1'  ? 'selected' : ''}}>Vigente</option>
+                                                <option value="2" {{$pacientes->estado_dpi == '2'  ? 'selected' : ''}}>En trámite</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -167,8 +171,14 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Religión</label>
+                                            <input disabled type="text" name="religion"  value="{{$pacientes->religion}}" class="religion form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Dirección*</label>
-                                            <input type="text" disabled name="address" class="address form-control" value="{{$pacientes->direccion}}">
+                                            <input disabled type="text" name="address" class="address form-control" value="{{$pacientes->direccion}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -183,13 +193,13 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Colonia / Barrio / Aldea*</label>
-                                            <input type="text" disabled name="coloniaBarrioAldea" value="{{$pacientes->colonia_barrio_aldea}}" class="coloniaBarrioAldea form-control">
+                                            <input disabled type="text" name="coloniaBarrioAldea" value="{{$pacientes->colonia_barrio_aldea}}" class="coloniaBarrioAldea form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Referencia de la Vivienda</label>
-                                            <input type="text" disabled name="refVivienda" class="refVivienda form-control" value="{{$pacientes->referencia_vivienda}}">
+                                            <input  disabled type="text" name="refVivienda" class="refVivienda form-control" value="{{$pacientes->referencia_vivienda}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -213,19 +223,19 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono Casa*</label>
-                                            <input type="text" disabled name="telefonoCasa" class="telefonoCasa form-control" value="{{$pacientes->telefono_casa}}">
+                                            <input disabled type="text" name="telefonoCasa" class="telefonoCasa form-control" value="{{$pacientes->telefono_casa}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 1*</label>
-                                            <input type="text" disabled name="telefono1" class="telefono form-control" value="{{$pacientes->celular_1}}">
+                                            <input disabled type="text" name="telefono1" class="telefono form-control" value="{{$pacientes->celular_1}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 2</label>
-                                            <input type="text" disabled name="telefono2" class="telefono form-control" value="{{$pacientes->Celular_2}}">
+                                            <input disabled type="text" name="telefono2" class="telefono form-control" value="{{$pacientes->Celular_2}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -252,24 +262,24 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres</label>
-                                            <input type="text" disabled name="namePadre" value="{{$generalPaciente->nombrePadre}}" class="namePadre form-control">
+                                            <input disabled type="text" name="namePadre" value="{{$generalPaciente->nombrePadre}}" class="namePadre form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos</label>
-                                            <input type="text" disabled name="lastNamePadre" value="{{$generalPaciente->apellidoPadre}}" class="lastNamePadre form-control">
+                                            <input disabled type="text" name="lastNamePadre" value="{{$generalPaciente->apellidoPadre}}" class="lastNamePadre form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4 d-flex justify-content-between px-3 align-items-center">
                                         <div class="form-group m-0" style="margin: auto !important;">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre1" value="Fallecido" {{$generalPaciente->estadoPadre == 0  ? 'checked' : ''}}>
+                                                <input disabled class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre1" value="Fallecido" {{$generalPaciente->estadoPadre == 0  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioPadre1">Fallecido</label>
 
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre2" value="Encargado" {{$generalPaciente->estadoPadre == 1  ? 'checked' : ''}}>
+                                                <input disabled class="form-check-input" type="radio" name="radioOpPadre" id="radioPadre2" value="Encargado" {{$generalPaciente->estadoPadre == 1  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioPadre2">Encargado</label>
                                             </div>
                                         </div>
@@ -284,23 +294,23 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres</label>
-                                            <input type="text" disabled name="nameMadre" class="nameMadre form-control" value="{{$generalPaciente->nombreMadre}}">
+                                            <input disabled type="text" name="nameMadre" class="nameMadre form-control" value="{{$generalPaciente->nombreMadre}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos</label>
-                                            <input type="text" disabled name="lastNameMadre" class="lastNameMadre form-control" value="{{$generalPaciente->apellidoMadre}}">
+                                            <input disabled type="text" name="lastNameMadre" class="lastNameMadre form-control" value="{{$generalPaciente->apellidoMadre}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4 d-flex justify-content-between px-3 align-items-center">
                                         <div class="form-group m-0" style="margin: auto !important;">
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Fallecido" {{$generalPaciente->estadoMadre == 0  ? 'checked' : ''}}>
+                                                <input disabled class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Fallecido" {{$generalPaciente->estadoMadre == 0  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioMadre2">Fallecido</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Encargado" {{$generalPaciente->estadoMadre == 1  ? 'checked' : ''}}>
+                                                <input disabled class="form-check-input" type="radio" name="radioOpMadre" id="radioMadre2" value="Encargado" {{$generalPaciente->estadoMadre == 1  ? 'checked' : ''}}>
                                                 <label class="form-check-label" for="radioMadre2">Encargado</label>
                                             </div>
                                         </div>
@@ -315,13 +325,13 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Nombres*</label>
-                                            <input type="text" disabled name="nameEncargado" class="nameEncargado form-control" value="{{$generalPaciente->nombreEncargado}}">
+                                            <input disabled type="text" name="nameEncargado" class="nameEncargado form-control" value="{{$generalPaciente->nombreEncargado}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Apellidos*</label>
-                                            <input type="text" disabled name="lastNameEncargado" class="lastNameEncargado form-control" value="{{$generalPaciente->apellidoEncargado}}">
+                                            <input disabled type="text" name="lastNameEncargado" class="lastNameEncargado form-control" value="{{$generalPaciente->apellidoEncargado}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -337,13 +347,16 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Especifique</label>
-                                            <input type="text" disabled name="especifiqueGeneral" class="especifiqueGeneral form-control">
+                                            <input disabled type="text" name="especifiqueGeneral" class="especifiqueGeneral form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Dirección*</label>
-                                            <input type="text" disabled name="addressGeneral" class="addressGeneral form-control" value="{{$generalPaciente->direccion}}">
+                                            <input disabled type="text" name="addressGeneral" class="addressGeneral form-control" value="{{$generalPaciente->direccion}}">
+                                            @if ($errors->has('addressGeneral'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -358,7 +371,7 @@
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Colonia / Barrio / Aldea*</label>
-                                            <input type="text" disabled name="coloniaBarrioAldeaGeneral" class="coloniaBarrioAldeaGeneral form-control" value="{{$generalPaciente->coloniaBarrioAldea}}">
+                                            <input disabled type="text" name="coloniaBarrioAldeaGeneral" class="coloniaBarrioAldeaGeneral form-control" value="{{$generalPaciente->coloniaBarrioAldea}}">
                                         </div>
                                     </div>
 
@@ -377,19 +390,20 @@
                                             <label class="font-weight-bold" style="font-size: 1rem;">Municipio Actual*</label>
                                             <select disabled class="form-control" name="muniActualGeneral" id="muniActualGeneral">
                                                 <option value="{{$generalPaciente->ID_MUNICIPIO}}">{{$generalPaciente->MUNICIPIO}}</option>
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 1*</label>
-                                            <input type="text" disabled name="telefono1General" class="telefono form-control" value="{{$generalPaciente->telefono_1}}">
+                                            <input disabled type="text" name="telefono1General" class="telefono form-control" value="{{$generalPaciente->telefono_1}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 2</label>
-                                            <input type="text" disabled name="telefono2General" class="telefono form-control" value="{{$generalPaciente->telefono_2}}">
+                                            <input disabled type="text" name="telefono2General" class="telefono form-control" value="{{$generalPaciente->telefono_2}}">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -402,7 +416,7 @@
                                     <div class="text-center mb-1">
                                         <a href="#" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
-                                    <div class="text-center">
+                                    <div class="text-center mb-1">
                                         <a href="/pacientes" class="btn btn-block btn-lg btn-danger text-uppercase"><i class="fas fa-user-injured"></i> REGRESAR</a>
                                     </div>
                                 </div>
