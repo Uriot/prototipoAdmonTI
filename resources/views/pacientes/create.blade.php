@@ -36,6 +36,15 @@
                                 <div class="row gap-2">
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Número de Expendiente*</label>
+                                            <input type="text" name="noExpediente" class="noExpediente form-control">
+                                            @if ($errors->has('noExpediente'))
+                                            <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
                                             <label class="font-weight-bold" style="font-size: 1rem;">Primer Nombre*</label>
                                             <input type="text" name="name1" class="name1 form-control">
                                             @if ($errors->has('name1'))
@@ -194,6 +203,12 @@
                                             @if ($errors->has('address'))
                                             <span class="text-danger"><i class="fas fa-exclamation-circle"></i> Este campo es requerido.</span>
                                             @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label class="font-weight-bold" style="font-size: 1rem;">Religión</label>
+                                            <input type="text" name="religion" class="religion form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
@@ -498,6 +513,10 @@
                                             <label class="font-weight-bold" style="font-size: 1rem;">Teléfono 2</label>
                                             <input type="text" name="telefono2General" class="telefono form-control">
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="hidden" name="caso" value="C" class="name1 form-control">
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">

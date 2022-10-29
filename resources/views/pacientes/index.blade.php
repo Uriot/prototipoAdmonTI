@@ -43,13 +43,15 @@
                                         <td>{{ $paciente->Apellido_1." ".$paciente->Apellido_2 }}</td>
                                         <td>{{ $paciente->Direccion }}</td>
                                         <td>{{ $paciente->Celular_1 }}</td>
-                                        <td><select name="dowpdown" class="btn btn-warning">
-                                                <option value="1">Activo</option>
-                                                <option value="2">Inactivo</option>
+                                        <td><select name="estadosUpdate" id="estadosUpdate" onchange="myFunction(this.value,  <?=$paciente->id_Paciente?>)" class="btn btn-warning">
+                                            @foreach ($estados as $estado)
+                                            <option value="{{$estado->id}}" {{$estado->id== $paciente->id_estado_paciente? 'selected' : ''}}>{{$estado->nombre}}</option>
+                                            @endforeach
                                             </select></td>
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
-                                                <a href="" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                                <a href="{{ '/reportes/paciente/expediente/' . $paciente->id_Paciente }}" class="btn btn-secondary"><i class="fas fa-print"></i></a>
+                                                <a href="{{ route('pacientes.show', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                 <a href="{{ route('asistencia.show', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
@@ -69,4 +71,33 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('scripts')
+<script>
+
+    function myFunction(estado, id) {
+        console.log('')
+        $.getJSON(`updateState/paciente/${id}/estado/${estado}`, function(response) {
+            console.log(response)
+        
+         })
+    }
+
+
+    //   document.getElementById('estadosUpdate').addEventListener('change', (e) => {
+    //     const id_estado = e.target.value;
+    //     console.log(id_estado)
+    //     $.getJSON(`updateState/${id_estado}`, function(response) {
+    //         console.log(response)
+    //     //     let htmlOptionsMunicipios = '';
+    //     //     municipiosData.length === 0 ? htmlOptionsMunicipios += `<option value="">no hay municipios disponibles</option>` :
+    //     //         municipiosData.forEach(function(datamunicipiosoptions) {
+    //     //             htmlOptionsMunicipios += `<option value="${datamunicipiosoptions.ID_MUNICIPIO}">${datamunicipiosoptions.MUNICIPIO}</option>`
+    //     //         })
+
+    //     //     $("#muniOrigen").html(htmlOptionsMunicipios);
+    //      })
+    // })
+</script>
 @endsection
