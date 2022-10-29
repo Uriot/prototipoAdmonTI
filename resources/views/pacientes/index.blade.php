@@ -54,7 +54,7 @@
                                                 <a href="{{ route('pacientes.show', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                                 <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                                                 <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                                <a href="{{ route('asistencia.show', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
+                                                {{-- <a href="{{ route('asistencia.show', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a> --}}
                                             </div>
                                         </td>
                                     </tr>
@@ -80,7 +80,7 @@
         console.log('')
         $.getJSON(`updateState/paciente/${id}/estado/${estado}`, function(response) {
             console.log(response)
-        
+
          })
     }
 
