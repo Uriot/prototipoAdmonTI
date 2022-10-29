@@ -18,7 +18,7 @@ class ReportsController extends Controller
     {
         $get = '';
         if (is_null($request->get('filter'))) {
-            $patients = Pacientes::paginate(10);
+            $patients = Pacientes::all();
         } else {
             $filters = $request->get('filter');
             $dpi = isset($filters[3]) ? true : false;
@@ -27,7 +27,7 @@ class ReportsController extends Controller
             $get .= isset($filters[2]) ? "&filter%5B%5D={$filters[2]}" : '&filter%5B%5D=';
             $get .= isset($filters[3]) ? "&filter%5B%5D={$dpi}" : '';
             $patients = new Pacientes();
-            $patients = $patients->getForFilters($filters)->paginate(10);
+            $patients = $patients->getForFilters($filters)->get();
         }
         $get = ($get == '?' || isNull($get)) ? $get : '';
         $dpi = isset($dpi) ?? false;

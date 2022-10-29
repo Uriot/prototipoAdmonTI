@@ -25,7 +25,7 @@ class Pacientes extends Model
         'Nacionalidad',
         'Edad',
         'Fecha_Nacimiento',
-        'id_Estado_Paciente',
+        'id_estado_paciente',
         'Religion',
         'Direccion',
         'Zona',
@@ -105,7 +105,7 @@ class Pacientes extends Model
                 ->orWhere('no_expediente', 'like', '%'.$filters[2].'%');
             });
         }
-
+        $query->where('id_estado_paciente', '!=' , 0);
         return $query;
     }
 }

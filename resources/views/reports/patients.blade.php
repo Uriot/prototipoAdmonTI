@@ -18,7 +18,7 @@
                                         <input name="filter[]" class="form-control mr-2" type="number" placeholder="Desde Edad" aria-label="Search">
                                         <input name="filter[]" class="form-control mr-2" type="number" placeholder="Hasta Edad" aria-label="Search">
                                         <input name="filter[]" class="form-control mr-2" type="text" placeholder="Nombre o expediente" aria-label="Search">
-                                        <label class="mr-2"><input name="filter[]" class="form-control mr-2" type="checkbox"  id="dpi" value="true" aria-label="Search"> DPI no vicente</label>
+                                        <label class="mr-2"><input name="filter[]" class="form-control mr-2" type="checkbox"  id="dpi" value="true" aria-label="Search"> DPI no vigente</label>
                                         <button class="btn btn btn-info my-2 my-sm-0 mr-2" type="submit"><i class="fa fa-search"></i>Buscar</button>
                                     </form>
                                 </div>
@@ -45,9 +45,13 @@
                                     </tr>
                                     @else
                                     @foreach ($patients as $patient)
-                                    @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente')
+                                    <tr>
+                                        {{-- @if ($patient->id_estado_paciente == 0)
                                         <?php continue; ?>
-                                    @endif
+                                        @endif --}}
+                                        @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente')
+                                        <?php continue; ?>
+                                        @endif
                                     <tr>
                                         <td style="display: none">{{ $patient->id_Paciente }}</td>
                                         <td>{{ $patient->no_expediente}}</td>
@@ -56,13 +60,11 @@
                                         <td>{{ $patient->Direccion }}</td>
                                         <td>{{ $patient->Celular_1 }}</td>
                                         <td>{{ $patient->Edad }}</td>
+                                        <td>{{ $patient->id_estado_paciente}} </td>
                                     </tr>
                                     @endforeach
                                 @endif
                             </tbody>
-                            <div class="pagination justify-content-end">
-                                {{ $patients->links() }}
-                            </div>
                         </table>
                     </div>
                 </div>

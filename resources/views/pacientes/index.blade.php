@@ -10,9 +10,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <!-- Comentar linea 14 y 22 para pruebas porque son permisos -->
+                        {{-- <!-- Comentar linea 14 y 22 para pruebas porque son permisos -->
                         <!-- @can('crear-paciente')  -->
-                        <!-- @endcan -->
+                        <!-- @endcan --> --}}
                         <div class="pull-right">
                             <a class="btn btn-warning" href="{{ route('pacientes.create') }}">Nuevo</a>
                             <form action="{{route('pacientes.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">

@@ -16,7 +16,7 @@
                                     <th style="display: none">ID</th>
                                     <th style="color: #fff">Nombre</th>
                                     <th style="color: #fff">Email</th>
-                                    <th style="color: #fff">Rol</th>
+                                    {{-- <th style="color: #fff">Rol</th> --}}
                                     <th style="color: #fff">Acciones</th>
                                 </thead>
                                 <tbody>
@@ -25,13 +25,13 @@
                                             <td style="display: none">{{ $user->id }}</td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 @if (!empty($user->getRoleNames()))
                                                     @foreach ($user->getRoleNames() as $rolName)
                                                         <label class="badge badge-success">{{ $rolName }}</label>
                                                     @endforeach
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 <a href="{{ route('users.edit', $user->id) }}" class="btn btn-primary">Editar</a>
                                                 {{ Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) }}
