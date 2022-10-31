@@ -24,6 +24,9 @@ class AsistenciaController extends Controller
 
         foreach ($asistencias as $asistencia) {
             $events[] = [
+                'id' => $asistencia->id,
+                'idPaciente' => $asistencia->id_paciente,
+                'observacion' => $asistencia->observacion,
                 'title' => $asistencia->title,
                 'start' => $asistencia->start_date,
                 'end' => $asistencia->start_date
@@ -69,11 +72,21 @@ class AsistenciaController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $asistencia = new Asistencia();
-        $asistencia->id_paciente = $request->id_Paciente;
-        $asistencia->fecha_asistencia = $request->start_datetime;
-        $asistencia->observacion = $request->description;
-        $asistencia->save();
+
+        if ($request->id_asistencias) {
+            $asistencia = Asistencia::find($request->id_asistencias);
+            $asistencia->id_asistencias = $request->id_asistencias;
+            $asistencia->fecha_asistencia = $request->start;
+            $asistencia->observacion = $request->description;
+            $asistencia->update();
+        } else {
+            $asistencia = new Asistencia();
+            $asistencia->id_paciente = $request->id_Paciente;
+            $asistencia->fecha_asistencia = $request->start_datetime;
+            $asistencia->observacion = $request->description;
+            $asistencia->save();
+        }
+
         return redirect()->route('asistencia.edit', $request->id_Paciente)
             ->with('success', 'Asistencia creda con éxito');
     }
