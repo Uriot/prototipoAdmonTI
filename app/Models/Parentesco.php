@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Blog extends Model
+class Parentesco extends Model
 {
     use HasFactory;
 
+    protected $table = "tb_parentesco";
+    protected  $primaryKey = 'id_parentesco';
+
     protected $fillable = [
-        'title',
-        'content',
+        'tipo_parentesco',
     ];
 }

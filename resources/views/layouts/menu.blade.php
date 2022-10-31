@@ -5,10 +5,15 @@
     <a class="nav-link" href="/users">
         <i class=" fas fa-users"></i><span>Usuarios</span>
     </a>
-    <a class="nav-link" href="/roles">
+    {{-- <a class="nav-link" href="/roles">
         <i class=" fas fa-user-lock"></i><span>Roles</span>
+    </a> --}}
+    <a class="nav-link" href="/pacientes">
+        <i class="fas fa-user-injured"></i><span>Pacientes</span>
     </a>
-    <a class="nav-link" href="/blogs">
-        <i class=" fas fa-blog"></i><span>Blogs</span>
+    <a class="nav-link" href={{ route('reports.patients') }}>
+        <i class="fa fa-list" ></i><span>Reporte Pacientes</span>
+    <a class="nav-link" href="/expediente">
+        <i class="fas fa-user-edit"></i><span>Expediente</span>
     </a>
 </li>

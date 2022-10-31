@@ -35,18 +35,30 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-xl-4">
+                                      <div class="col-md-4 col-xl-4">
                                         <div class="card bg-c-pink order-card">
                                             <div class="card-block">
-                                                <h5 class="m-b-20">Blogs</h5>
+                                                <h5 class="m-b-20">Pacientes</h5>
                                                 @php
-                                                    $blogs = DB::table('blogs')->count();
+                                                    $pacientes = DB::table('tb_paciente')->count();
                                                 @endphp
-                                                <h2 class="text-right"><i class="fas fa-blog f-left"></i><span>{{ $blogs }}</span></h2>
-                                                <p class="m-b-0 text-right"><a href="/blogs" class="text-white">Ver más</a></p>
+                                                <h2 class="text-right"><i class="fas fa-user-injured f-left"></i><span>{{ $pacientes }}</span></h2>
+                                                <p class="m-b-0 text-right"><a href="/pacientes" class="text-white">Ver más</a></p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
+                                    {{-- <div class="col-md-4 col-xl-4">
+                                        <div class="card bg-c-pink order-card">
+                                            <div class="card-block">
+                                                <h5 class="m-b-20">Asistencia</h5>
+                                                @php
+                                                    $pacientes = DB::table('pacientes')->count();
+                                                @endphp
+                                                <h2 class="text-right"><i class="fas fa-user-injured f-left"></i><span>{{ $pacientes }}</span></h2>
+                                                <p class="m-b-0 text-right"><a href="/pacientes" class="text-white">Ver más</a></p>
+                                            </div>
+                                        </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>

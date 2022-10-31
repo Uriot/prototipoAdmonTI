@@ -47,12 +47,12 @@
                                             {{ Form::password('confirm-password', ['placeholder' => 'Confirmar Contraseña','class' => 'form-control']) }}
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    {{-- <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <strong>Roles:</strong>
                                             {{ Form::select('roles[]', $roles,$userRole, ['class' => 'form-control']) }}
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
