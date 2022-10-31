@@ -14,7 +14,9 @@
                         <!-- @can('crear-paciente')  -->
                         <!-- @endcan --> --}}
                         <div class="pull-right">
+                            @can('crear-paciente')
                             <a class="btn btn-warning" href="{{ route('pacientes.create') }}">Nuevo</a>
+                            @cendcan
                             <form action="{{route('pacientes.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
                                 <input name="texto" class="form-control mr-sm-2" type="text" placeholder="Ingrese Paciente" aria-label="Search">
                                 <button class="btn btn btn-info my-2 my-sm-0" type="submit">Buscar Paciente</button>
@@ -50,11 +52,21 @@
                                             </select></td>
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
+                                                @can('imprimir-paciente')
                                                 <a href="{{ '/reportes/paciente/expediente/' . $paciente->id_Paciente }}" class="btn btn-secondary"><i class="fas fa-print"></i></a>
+                                                @endcan
+                                                @can('ver-paciente')
                                                 <a href="{{ route('pacientes.show', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                                @endcan
+                                                @can('editar-paciente')
                                                 <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                @endcan
+                                                @can('borrar-paciente')
                                                 <a href="" class="btn btn-danger" onclick="myFunction(0,  <?=$paciente->id_Paciente?>)"><i class="fas fa-trash"></i></a>
+                                                @endcan
+                                                @can('editar-calendario')
                                                 <a href="{{ route('asistencia.edit', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

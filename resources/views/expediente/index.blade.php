@@ -61,9 +61,13 @@
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
 
                                                 <!--Boton de Crear-->
+                                                @can('crear-expediente')
                                                 <a href="{{route('expediente.create',$paciente->id_Paciente)}}"class="btn btn-primary"><i class="fas fa-address-book"></i></a>
+                                                @endcan
                                                 <!--Boton de Editar-->
+                                                @can('editar-expediente')
                                                 <a href="{{route('expediente.edit',$paciente->id_Paciente)}}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
+                                                @endcan
                                             </div>
                                         </td>
                                     </tr>

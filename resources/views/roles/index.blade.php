@@ -11,11 +11,11 @@
                     <div class="card">
                         <div class="card-body">
 
-                            {{-- @can('crear-rol') --}}
+                                 @can('crear-rol')
                                 <div class="pull-right">
                                     <a class="btn btn-warning" href="{{ route('roles.create') }}">Nuevo</a>
                                 </div>
-                            {{-- @endcan --}}
+                                @endcan
                             <table class="table table-striped mt-2">
                                 <thead style="background-color: #6777ef">
                                     <th style="display: none">ID</th>
@@ -27,15 +27,15 @@
                                         <tr>
                                             <td>{{ $role->name }}</td>
                                             <td>
-                                                {{-- @can('editar-rol') --}}
+                                                    @can('editar-rol') 
                                                     <a class="btn btn-primary" href="{{ route('roles.edit', $role->id) }}">Editar</a>
-                                                {{-- @endcan --}}
+                                                    @endcan
 
-                                                {{-- @can('eliminar-rol') --}}
+                                                    @can('eliminar-rol')
                                                     {{ Form::open(['method' => 'DELETE', 'route' => ['roles.destroy', $role->id], 'style' => 'display:inline']) }}
                                                         {{ Form::submit('Eliminar', ['class' => 'btn btn-danger']) }}
                                                     {{ Form::close() }}
-                                                {{-- @endcan --}}
+                                                     @endcan 
                                         </tr>
                                     @endforeach
                                 </tbody>
