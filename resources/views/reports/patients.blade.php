@@ -23,8 +23,12 @@
                                     </form>
                                 </div>
                                 <div class="col align-items-end">
+                                    @can('crear-pdf')
                                     <a class="btn btn-danger mr-2" href="{{route('reports.patientsToPDF')}}?<?= $get?>"><i class="fa fa-file-pdf-o"></i>PDF</a>
+                                    @endcan
+                                    @can('crear-excel')
                                     <a class="btn btn-success mr-2" href="{{route('reports.patientsToExcel')}}?<?= $get?>"><i class="fa fa-file-excel-o"></i>XLSX</a>
+                                    @endcan
                                 </div>
                             </div>
                         </div>

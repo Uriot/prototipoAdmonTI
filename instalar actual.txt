@@ -1,0 +1,113 @@
+1- instalar composer
+2- instalar node
+3- clonar repositorio
+4- configurar .env segun entorno
+5- dentro de la carpeta del repositorio - composer install
+6- npm install
+7- npm run dev
+8- php artisan migrate
+9- correr importacion de permisos php artisan db:seed --class=SeederTablaPermisos
+10- php artisan serve
+11- registrar usuario super admin
+/register
+-nombre: Super Admin
+-correo: admin@gmail.com
+-pwd: $password
+
+
+***----
+
+eror php migrate
+
+composer i 
+
+composer update
+
+***---
+
+
+
+composer update. 
+npm 
+
+
+si da error npm install ejecutar el numeral 2 y 3. 
+
+por si les da error al correr npm run dev:
+
+1 npm uninstall webpack --save-dev
+2 npm install npm@latest -g
+3 npm config set legacy-peer-deps true
+4 npm install webpack --save-dev --force
+
+
+http://elliot98-001-site1.ctempurl.com/
+
+Instalacion
+https://nodejs.org/es/
+https://getcomposer.org/
+
+Documentacion
+https://laravel.com/docs/9.x/artisan
+https://infyom.com/open-source/laravel-ui-stisla/docs
+https://laravelcollective.com/docs/6.x/html
+https://spatie.be/docs/laravel-permission/v5/basic-usage/basic-usage
+
+Videos de guias:
+https://www.youtube.com/watch?v=I4vgw0dcKwo&list=PLrAw40DbN0l0cOs7BOjdWj5ajrFyeElFR&index=1
+
+
+
+Documentacion de Git. 
+
+https://git-scm.com/download/win
+
+
+Instalacion de git:
+
+--configurar git con correo 
+
+git config --global user.email "eleduardochim@gmail.com"
+
+--configurar usuario
+
+git config --global user.name "EduardoChim"
+
+--clonar un git
+
+git clone (lo que se saca el code de reposititorio)
+
+
+--Creacion de ramas 
+
+git flow init
+
+-- pasar a devoloper 
+ git checkout develop
+
+--ejecutar el programa
+
+php artisan serve
+
+
+
+-- creacion de ramas nuevas
+
+git flow feature start test
+
+ 
+
+--Nombres de las ramas
+Iniciales guion y lo que vamos a realizar. 
+
+Ejemplo 
+
+Eduardo-creacionFormulario
+
+Instalar version de xampp php 8.1
+
+
+roles
+model has roles 
+role has permissions
+role has permisions

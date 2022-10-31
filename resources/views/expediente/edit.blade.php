@@ -464,7 +464,9 @@
                                         <a href="/expediente" id="v-pills-back-tab" class="btn btn-block btn-lg btn-warning text-uppercase"><i class="fas fa-arrow-left" style="font-size: 1rem;"></i> Retroceder</a>
                                     </div>
                                     <div class="text-center">
+                                     @can('editar-expediente')   
                                     <button type="submit" class="btn btn-block btn-lg btn-primary  text-uppercase">Actualizar <i class="fas fa-save"></i></button>
+                                    @endcan
                                     </div>
                                 </div>
                                 <!--Botones-->

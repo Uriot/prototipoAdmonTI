@@ -29,11 +29,20 @@ class SeederTablaPermisos extends Seeder
             'editar-usuario',
             'eliminar-usuario',
            
-            // pacientes
+            //PACIENTES
             'ver-paciete',
             'crear-paciente',
             'editar-paciente',
             'borrar-paciente',
+
+            //REPORTES
+            'crear-pdf',
+            'crear-excel',
+
+            //EXPEDIENTES
+            'editar-expediente',
+
+
 
         ];
         foreach ($permisos as $permiso) {
