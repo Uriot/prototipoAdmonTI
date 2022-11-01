@@ -32,8 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        // $roles = Role::pluck('name', 'name')->all();
-        // return view('users.create', compact('roles'));
+        
+         $roles = Role::pluck('name', 'name')->all();
+         return view('users.create', compact('roles'));
         return view('users.create');
     }
 
@@ -81,10 +82,10 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        // $roles = Role::pluck('name', 'name')->all();
-        // $userRole = $user->roles->pluck('name', 'name')->all();
+         $roles = Role::pluck('name', 'name')->all();
+        $userRole = $user->roles->pluck('name', 'name')->all();
 
-        // return view('users.edit', compact('user', 'roles', 'userRole'));
+        return view('users.edit', compact('user', 'roles', 'userRole'));
         return view('users.edit', compact('user'));
 
     }
@@ -102,7 +103,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
-            // 'roles' => 'required'
+            'roles' => 'required'
         ]);
 
         $input = $request->all();
@@ -116,7 +117,7 @@ class UserController extends Controller
         $user->update($input);
         DB::table('model_has_roles')->where('model_id', $id)->delete();
 
-        // $user->assignRole($request->input('roles'));
+         $user->assignRole($request->input('roles'));
 
         return redirect()->route('users.index')
             ->with('success', 'Usuario actualizado correctamente');

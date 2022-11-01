@@ -16,7 +16,7 @@
                         <div class="pull-right">
                             @can('crear-paciente')
                             <a class="btn btn-warning" href="{{ route('pacientes.create') }}">Nuevo</a>
-                            @cendcan
+                            @endcan
                             <form action="{{route('pacientes.index')}}" method="get" class="form-inline my-2 my-lg-0 float-right">
                                 <input name="texto" class="form-control mr-sm-2" type="text" placeholder="Ingrese Paciente" aria-label="Search">
                                 <button class="btn btn btn-info my-2 my-sm-0" type="submit">Buscar Paciente</button>
