@@ -129,7 +129,9 @@ class ExpedienteController extends Controller
             {
 
                 //dd($e->getMessage());
-                echo "<script>alert('Este registro ya existe, intente Editarlo');</script>";
+
+                
+                return back()->with('status','El expediente ya fue creado, intenta editarlo.');
                 
 
                 
@@ -161,12 +163,6 @@ class ExpedienteController extends Controller
 
 
         $DB_Paciente = DB::select('Select id_Paciente, no_expediente from tb_paciente where id_Paciente ='.$id);
-
-
-
-
-
-
         $expedientes = DB::select('Select 
     
         te.id_Expedientes AS id,
@@ -245,10 +241,7 @@ class ExpedienteController extends Controller
         catch(Exception $e)
         {
            
-                echo "<script>alert('uy');</script>";
-                
-
-                return view('home');
+            return back()->with('status','El expediente no ha sido aún creado, crealo en la opcion Crear');
 
 
 
@@ -359,10 +352,7 @@ class ExpedienteController extends Controller
         catch(Exception $e)
         {
            
-                echo "<script>alert('Este registro ya se editó, intente con otro');</script>";
-                
-
-                return view('home');
+            return back()->with('status','El expediente no ha sido aún creado, crealo en la opcion Crear');
 
 
 
@@ -430,10 +420,11 @@ class ExpedienteController extends Controller
         $insertar = str_replace("]","",$insertar);
         
        DB::select('call SP_UPDATE_EXPEDIENTE('.$insertar.')');
+       return back()->with('status','El expediente a sido ACTUALIZADO CORRECTAMENTE');
     }
     catch(Exception $e)
     {
-       echo "<script>alert('Uy');</script>";
+        return back()->with('status','El expediente no se pudo actualizar, intente más tarde');
     }  
     
 

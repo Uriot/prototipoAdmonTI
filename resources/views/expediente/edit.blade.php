@@ -5,6 +5,17 @@
     <div class="section-header">
         <h3 class="page__heading">Editar expediente</h3>
     </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="form-group">
+                    <label class="font-weight-bold" style="font-size: 1rem;">
+                    @if(session('status'))
+                    {{ session('status') }}
+                    @endif
+                    </label>                                                 
+        </div>
+    </div>
+
     <div class="section-body">
         <div class="row">
             <div class="col-lg-12">
