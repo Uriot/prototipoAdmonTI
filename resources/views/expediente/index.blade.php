@@ -29,7 +29,7 @@
                         <table class="table table-striped mt-2">
                             <thead style="background-color: #6777ef">
                                 <!--Agregar Numero de expediente no_expediente-->
-                                <th style="display: none">ID</th>
+                                <th style="color: #fff">ID paciente</th>
                                 <th style="color: #fff">No. de Expediente</th>
                                 <th style="color: #fff">Nombre</th>
                                 <th style="color: #fff">Apellido</th>
@@ -45,6 +45,7 @@
                                     @else
                                     @foreach ($pacientes as $paciente)
                                     <tr>
+                                        <td>{{ $paciente->id_Paciente}}</td>
                                         <td>{{ $paciente->no_expediente}}</td>
                                         <td>{{ $paciente->Nombre_1." ".$paciente->Nombre_2 }}</td>
                                         <td>{{ $paciente->Apellido_1." ".$paciente->Apellido_2 }}</td>
@@ -59,7 +60,8 @@
                                             
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
-
+                                                <!--Boton de Ver-->
+                                                <a href="{{route('expediente.show',$paciente->id_Paciente)}}"class="btn btn-primary"><i class="fas fa-eye"></i></a>
                                                 <!--Boton de Crear-->
                                                 <a href="{{route('expediente.create',$paciente->id_Paciente)}}"class="btn btn-primary"><i class="fas fa-address-book"></i></a>
                                                 <!--Boton de Editar-->
