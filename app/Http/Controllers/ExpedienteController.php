@@ -106,7 +106,7 @@ class ExpedienteController extends Controller
 
 
         try
-            {
+        {
 //write your codes here
 
 
@@ -189,8 +189,11 @@ class ExpedienteController extends Controller
 
 
                     }
+
+
+        }
         catch(Exception $e)
-            {
+        {
 
                 //dd($e->getMessage());
 
@@ -200,6 +203,10 @@ class ExpedienteController extends Controller
 
 
                 }
+
+
+
+        }
 
 
 
