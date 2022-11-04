@@ -3,8 +3,19 @@
 @section('content')
 <section class="section">
     <div class="section-header">
-        <h3 class="page__heading">Expedientes</h3>
+        <h3 class="page__heading">Editar expediente</h3>
     </div>
+
+    <div class="col-xs-12 col-sm-6 col-md-4">
+        <div class="form-group">
+                    <label class="font-weight-bold" style="font-size: 1rem;">
+                    @if(session('status'))
+                    {{ session('status') }}
+                    @endif
+                    </label>                                                 
+        </div>
+    </div>
+
     <div class="section-body">
         <div class="row">
             <div class="col-lg-12">
@@ -21,7 +32,7 @@
                             </button>s
                         </div>
                         @endif -->
-                        {{ Form::model($expediente, ['method' => 'PUT','route' => ['expediente.update', $expediente->id]]) }}
+                        {{ Form::model($expediente, ['method' => 'PUT','route' => ['expediente.update', $expediente->id_Expedientes]]) }}
                         <ul class="nav nav-tabs left-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" id="InfoMedica-tab" data-toggle="tab" href="#InfoMedica" role="tab" aria-controls="InfoMedica" aria-selected="true">Informacion Medica</a>
@@ -44,10 +55,18 @@
                                 <div class="row gap-2">
 
                                     <div class="form-group">
-                                        <input type="hidden" name="id_expediente" value="{{$expediente->id}}" class="name1 form-control">
+                                        <input type="hidden" name="id_paciente" value="{{$paciente->id_Paciente}}" class="name1 form-control">
                                         <input type="hidden" name="" value="{{$expediente->no_expediente}}" class="name1 form-control">
                                     </div>
 
+
+                                    <!--Id paciente-->
+                                     <div class="col-xs-12 col-sm-6 col-md-4">
+                                        <div class="form-group">
+                                            <label  class="font-weight-bold" style="font-size: 1rem;">Id del paciente</label>
+                                            <input disabled type="text" name="" class="estimado form-control" value="{{$paciente->id_Paciente}}">
+                                        </div>
+                                    </div>
 
                                     <div class="col-xs-12 col-sm-6 col-md-4">
                                         <div class="form-group">

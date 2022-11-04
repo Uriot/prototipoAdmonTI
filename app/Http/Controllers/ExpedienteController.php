@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Expediente;
 use Illuminate\Support\Facades\DB;
 use PhpParser\Node\Stmt\Return_;
+Use Exception;
 
 class ExpedienteController extends Controller
 {
@@ -101,14 +102,58 @@ class ExpedienteController extends Controller
             $request->renta,
             $request->costos_traslado,
             $request->total_aproximado_e
+        //Clase Store
 
-            );
+
+        try
+            {
+//write your codes here
+
+
+
+                $insertar = array(
+                    $request->id_paciente,
+                    $request->fecha_diagnostico,
+                    $request->fecha_ingreso,
+                    $request->hipertenso,
+                    $request->diabetico,
+                    $request->cardiopatia,
+                    $request->id_A_Vascular,
+                    $request->tipo_sangre,
+                    $request->tratamientos,
+                    $request->peso,
+                    $request->Otros,
+                    $request->Observacion,
+                    $request->tipo_vivienda,
+                    $request->vehiculo_propio,
+                    $request->tipo_vehiculo,
+                    $request->no_hijos,
+                    $request->total_nucleo_familiar,
+                    $request->personas_laboran,
+                    $request->sector_publico,
+                    $request->sector_privado,
+                    $request->negocio_propio,
+                    $request->remesas,
+                    $request->ayuda_social,
+                    $request->total_aproximado_i,
+                    $request->alimentacion,
+                    $request->educacion,
+                    $request->arrendamiento,
+                    $request->servicios,
+                    $request->salud,
+                    $request->renta,
+                    $request->costos_traslado,
+                    $request->total_aproximado_e
+
+                    );
 
 
         $insertar=json_encode($insertar);
 
-        $insertar = str_replace("[","",$insertar);
-        $insertar = str_replace("]","",$insertar);
+                $insertar=json_encode($insertar);
+
+                $insertar = str_replace("[","",$insertar);
+                $insertar = str_replace("]","",$insertar);
 
         DB::select('call SP_EXPEDIENTE('.$insertar.')');
         echo "<script>alert('Registro agregado correctamente');</script>";
@@ -138,6 +183,28 @@ class ExpedienteController extends Controller
 
 
 
+                DB::select('call SP_EXPEDIENTE('.$insertar.')');
+
+
+
+
+                    }
+        catch(Exception $e)
+            {
+
+                //dd($e->getMessage());
+
+
+                return back()->with('status','El expediente ya fue creado, intenta editarlo.');
+
+
+
+                }
+
+
+
+
+
         // Blog::create($request->all());
 
         // return redirect()->route('pacientes.index')
@@ -152,6 +219,108 @@ class ExpedienteController extends Controller
      */
     public function show($id)
     {
+
+
+
+
+        try
+        {
+        //write your codes here
+
+
+        $DB_Paciente = DB::select('Select id_Paciente, no_expediente from tb_paciente where id_Paciente ='.$id);
+        $expedientes = DB::select('Select
+
+        te.id_Expedientes AS id,
+               p.Nombre_1,
+               p.Apellido_1,
+               p.no_expediente,
+               im.fecha_diagnostico,
+               im.fecha_ingreso,
+               im.hipertenso,
+               im.diabetico,
+               im.cardiopatia,
+               im.id_A_Vascular,
+               im.tipo_sangre,
+               im.tratamientos,
+               im.peso,
+               im.Otros,
+               im.Observacion,
+               v.tipo_vivienda,
+               v.vehiculo_propio,
+               v.tipo_vehiculo,
+               v.no_hijos,
+               v.total_nucleo_familiar,
+               c.personas_laboran,
+               c.sector_publico,
+               c.sector_privado,
+               c.negocio_propio,
+               c.remesas,
+               c.ayuda_social,
+               c.total_aproximado_i,
+               e.alimentacion,
+               e.educacion,
+               e.arrendamiento,
+               e.servicios,
+               e.salud,
+               e.renta,
+               e.costos_traslado,
+               e.total_aproximado_e
+
+              from tb_informacion_medica im
+               inner join tb_expedientes te
+               on im.id_infomedico = te.id_infomedico
+               INNER join tb_paciente p
+               on p.id_paciente=im.id_paciente
+               inner join tb_vivienda v
+               on v.id_vivienda=te.id_vivienda
+               inner join tb_ingreso_familiar c
+               on c.id_ingreso_familiar=te.id_ingreso_familiar
+               INNER join tb_egreso_familiar e
+               on e.id_egreso_familiar=te.id_egreso_familiar
+               where p.id_paciente=' . $id);
+
+
+
+        foreach ($expedientes as $pass) {
+         $expediente = $pass;
+         }
+
+        foreach ($DB_Paciente as $pacc) {
+            $paciente = $pacc;
+            }
+
+
+         //$expediente = Expediente::find($id_infomedico);
+         //var_dump($expediente->id_infomedico);
+         //die();
+
+
+
+         // $pacientes = Pacientes::find($id_Paciente);
+         // $pacientes = Pacientes::find($id_Paciente);
+         return view('expediente.show', compact('expediente','paciente'));
+
+
+
+        }
+        catch(Exception $e)
+        {
+
+            return back()->with('status','El expediente no ha sido aún creado, crealo en la opcion Crear');
+
+
+
+
+        }
+
+
+
+
+
+
+
+
 
 
     }
@@ -223,6 +392,70 @@ class ExpedienteController extends Controller
 
        foreach ($expedientes as $pass) {
         $expediente = $pass;
+    {
+
+        try
+        {
+        //write your codes here
+        //Id del Paciente tiene nombre Id_Expediente
+        $DB_Paciente = DB::select('Select id_Paciente, no_expediente from tb_paciente where id_Paciente ='.$id_Expediente);
+
+
+        $expedientes = DB::select('Select
+
+        te.id_Expedientes,
+               p.Nombre_1,
+               p.Apellido_1,
+               p.no_expediente,
+               im.fecha_diagnostico,
+               im.fecha_ingreso,
+               im.hipertenso,
+               im.diabetico,
+               im.cardiopatia,
+               im.id_A_Vascular,
+               im.tipo_sangre,
+               im.tratamientos,
+               im.peso,
+               im.Otros,
+               im.Observacion,
+               v.tipo_vivienda,
+               v.vehiculo_propio,
+               v.tipo_vehiculo,
+               v.no_hijos,
+               v.total_nucleo_familiar,
+               c.personas_laboran,
+               c.sector_publico,
+               c.sector_privado,
+               c.negocio_propio,
+               c.remesas,
+               c.ayuda_social,
+               c.total_aproximado_i,
+               e.alimentacion,
+               e.educacion,
+               e.arrendamiento,
+               e.servicios,
+               e.salud,
+               e.renta,
+               e.costos_traslado,
+               e.total_aproximado_e
+
+              from tb_informacion_medica im
+               inner join tb_expedientes te
+               on im.id_infomedico = te.id_infomedico
+               INNER join tb_paciente p
+               on p.id_paciente=im.id_paciente
+               inner join tb_vivienda v
+               on v.id_vivienda=te.id_vivienda
+               inner join tb_ingreso_familiar c
+               on c.id_ingreso_familiar=te.id_ingreso_familiar
+               INNER join tb_egreso_familiar e
+               on e.id_egreso_familiar=te.id_egreso_familiar
+               where p.id_paciente=' . $id_Expediente);
+
+
+
+        foreach ($expedientes as $pass) {
+         $expediente = $pass;
         }
 
 
@@ -235,6 +468,34 @@ class ExpedienteController extends Controller
         // $pacientes = Pacientes::find($id_Paciente);
         // $pacientes = Pacientes::find($id_Paciente);
         return view('expediente.edit', compact('expediente'));
+
+         foreach ($DB_Paciente as $pacc) {
+            $paciente = $pacc;
+        }
+
+
+         //$expediente = Expediente::find($id_infomedico);
+         //var_dump($expediente->id_infomedico);
+         //die();
+
+
+
+         // $pacientes = Pacientes::find($id_Paciente);
+         // $pacientes = Pacientes::find($id_Paciente);
+         return view('expediente.edit', compact('expediente','paciente'));
+
+
+
+        }
+        catch(Exception $e)
+        {
+
+            return back()->with('status','El expediente no ha sido aún creado, crealo en la opcion Crear');
+
+
+
+
+        }
 
 
 
@@ -288,6 +549,41 @@ class ExpedienteController extends Controller
             $request->costos_traslado,
             $request->total_aproximado_e
 
+        try
+        {
+            $insertar = array(
+                $request->id_paciente,
+                $request->fecha_diagnostico,
+                $request->fecha_ingreso,
+                $request->hipertenso,
+                $request->diabetico,
+                $request->cardiopatia,
+                $request->id_A_Vascular,
+                $request->tipo_sangre,
+                $request->tratamientos,
+                $request->peso,
+                $request->Otros,
+                $request->Observacion,
+                $request->tipo_vivienda,
+                $request->vehiculo_propio,
+                $request->tipo_vehiculo,
+                $request->no_hijos,
+                $request->total_nucleo_familiar,
+                $request->personas_laboran,
+                $request->sector_publico,
+                $request->sector_privado,
+                $request->negocio_propio,
+                $request->remesas,
+                $request->ayuda_social,
+                $request->total_aproximado_i,
+                $request->alimentacion,
+                $request->educacion,
+                $request->arrendamiento,
+                $request->servicios,
+                $request->salud,
+                $request->renta,
+                $request->costos_traslado,
+                $request->total_aproximado_e
             );
 
 
@@ -323,6 +619,16 @@ class ExpedienteController extends Controller
                ->paginate(6);
        }
        return view('expediente.index', compact('pacientes', 'texto'));
+
+
+       DB::select('call SP_UPDATE_EXPEDIENTE('.$insertar.')');
+       return back()->with('status','El expediente a sido ACTUALIZADO CORRECTAMENTE');
+    }
+    catch(Exception $e)
+    {
+        return back()->with('status','El expediente no se pudo actualizar, intente más tarde');
+    }
+
 
     }
     /**
