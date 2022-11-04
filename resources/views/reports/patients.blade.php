@@ -50,9 +50,6 @@
                                     @else
                                     @foreach ($patients as $patient)
                                     <tr>
-                                        {{-- @if ($patient->id_estado_paciente == 0)
-                                        <?php continue; ?>
-                                        @endif --}}
                                         @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente')
                                         <?php continue; ?>
                                         @endif
@@ -64,7 +61,6 @@
                                         <td>{{ $patient->Direccion }}</td>
                                         <td>{{ $patient->Celular_1 }}</td>
                                         <td>{{ $patient->Edad }}</td>
-                                        <td>{{ $patient->id_estado_paciente}} </td>
                                     </tr>
                                     @endforeach
                                 @endif

@@ -56,9 +56,9 @@
                                             </select></td>
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
-                                                @can('imprimir-paciente')
+                                                {{-- @can('imprimir-paciente')
                                                 <a href="{{ '/reportes/paciente/expediente/' . $paciente->id_Paciente }}" class="btn btn-secondary"><i class="fas fa-print"></i></a>
-                                                @endcan
+                                                @endcan --}}
                                                 @can('ver-paciente')
                                                 <a href="{{ route('pacientes.show', $paciente->id_Paciente) }}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                                 @endcan

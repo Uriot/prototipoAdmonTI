@@ -25,6 +25,13 @@ Route::get('/', function () {
     return redirect('/login');
 });
 
+//borrar cache en produccion - no se puede entrar por SSH para hacerlo como se debe
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    return 'DONE'; //Return anything
+});
+
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Auth::routes();
 
@@ -43,7 +50,7 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('asistencia/{id}/asistenciasGet/{idGet}', [AsistenciaController::class, 'asistenciasGet']);
     // Route::get('full-calender', [AsistenciaController::class, 'edit']);
     Route::get('full-calender/action', [AsistenciaController::class, 'action']);
-   
+
     Route::get('reporte/pacientes', [ReportsController::class, 'patients'])->name('reports.patients');
     Route::get('reporte/pacientes/pdf', [ReportsController::class, 'patientsToPDF'])->name('reports.patientsToPDF');
     Route::get('reporte/pacientes/excel', [ReportsController::class, 'patientsToExcel'])->name('reports.patientsToExcel');

@@ -85,7 +85,7 @@
                     <td>{{ $patient->Estado_Civil }}</td>
                     <td>{{ $patient->dpi->DPI }}</td>
                     <td>{{ $patient->dpi->ESTADO_DPI }}</td>
-                    <td>{{ $patient->Acceso_al_Igss ?? 'N/D'}}</td>
+                    <td>{{ ($patient->Acceso_al_Igss == 1 || $patient->Acceso_al_Igss == 'Si') ? 'Si' : 'No'}}</td>
                     <td>{{ $patient->Nacionalidad }}</td>
                     <td>{{ $patient->Direccion }}</td>
                     <td>{{ $patient->Zona }}</td>

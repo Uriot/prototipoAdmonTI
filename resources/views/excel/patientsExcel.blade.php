@@ -41,7 +41,7 @@
     </thead>
     <tbody>
     @foreach($patients as $patient)
-        @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente')
+        @if ($dpi == false && $patient->dpi->ESTADO_DPI != 'Vigente' || $dpi == false && $patient->dpi->ESTADO_DPI != 1)
             <?php continue; ?>
         @endif
         <tr>
@@ -49,13 +49,13 @@
             <td>{{ $patient->Nombre_1 }} {{ $patient->Nombre_2 }} {{ $patient->Nombre_3 }}</td>
             <td>{{ $patient->Apellido_1 }} {{ $patient->Apellido_2 }} {{$patient->Apellido_de_Casada}}</td>
             <td>{{ $patient->Estado_Civil }}</td>
-            <td>{{ $patient->dpi->DPI }}</td>
+            <td>{{ (string) $patient->dpi->DPI }}</td>
             <td>{{ $patient->dpi->ESTADO_DPI }}</td>
             <td>{{ $patient->dpi->FECHA_VENCIMIENTO  }}</td>
-            <td>{{ $patient->Acceso_al_Igss ?? 'No' }}</td>
+            <td>{{ ($patient->Acceso_al_Igss == 1 || $patient->Acceso_al_Igss == 'si' || $patient->Acceso_al_Igss == 'Si') ? 'Si' : 'No' }}</td>
             <td>{{ $patient->Nacionalidad }}</td>
             <td>{{ $patient->Edad }}</td>
-            <td>{{ $patient->Genero }}</td>
+            <td>{{ ($patient->Genero == 'F' || $patient->Genero == 'f') ? 'Femenino' : 'Masculino' }}</td>
             <td>{{ $patient->Fecha_Nacimiento }}</td>
             <td>{{ $patient->estadoPaciente->estado ?? 'N/D'}}</td>
             <td>{{ $patient->Religion }}</td>
