@@ -28,7 +28,7 @@ class SeederTablaPermisos extends Seeder
             'crear-usuario',
             'editar-usuario',
             'eliminar-usuario',
-            
+
             // pacientes
             'ver-paciente',
             'crear-paciente',
