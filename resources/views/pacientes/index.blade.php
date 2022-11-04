@@ -23,6 +23,7 @@
                             </form>
                         </div>
                         <br>
+                        <br>
                         <table class="table table-striped mt-2">
                             <thead style="background-color: #6777ef">
                                 <th style="display: none">ID</th>
@@ -31,7 +32,10 @@
                                 <th style="color: #fff">Dirección</th>
                                 <th style="color: #fff">Telefono</th>
                                 <th style="color: #fff">Estado</th>
+                                @can('crear-paciente')
                                 <th style="color: #fff">Acciones</th>
+                                @endcan
+
                             </thead>
                             <tbody>
                                 @if (count($pacientes)<=0) <tr>
@@ -45,10 +49,10 @@
                                         <td>{{ $paciente->Apellido_1." ".$paciente->Apellido_2 }}</td>
                                         <td>{{ $paciente->Direccion }}</td>
                                         <td>{{ $paciente->Celular_1 }}</td>
-                                        <td><select name="estadosUpdate" id="estadosUpdate" onchange="myFunction(this.value,  <?=$paciente->id_Paciente?>)" class="btn btn-warning">
-                                            @foreach ($estados as $estado)
-                                            <option value="{{$estado->id}}" {{$estado->id== $paciente->id_estado_paciente? 'selected' : ''}}>{{$estado->nombre}}</option>
-                                            @endforeach
+                                        <td><select name="estadosUpdate" id="estadosUpdate" onchange="myFunction(this.value,  <?= $paciente->id_Paciente ?>)" class="btn btn-warning">
+                                                @foreach ($estados as $estado)
+                                                <option value="{{$estado->id}}" {{$estado->id== $paciente->id_estado_paciente? 'selected' : ''}}>{{$estado->nombre}}</option>
+                                                @endforeach
                                             </select></td>
                                         <td>
                                             <div class="btn-group" roel="group" aria-lavel="Basic exame">
@@ -62,10 +66,10 @@
                                                 <a href="{{ route('pacientes.edit', $paciente->id_Paciente) }}" class="btn btn-primary"><i class="fas fa-pencil-alt"></i></a>
                                                 @endcan
                                                 @can('borrar-paciente')
-                                                <a href="" class="btn btn-danger" onclick="myFunction(0,  <?=$paciente->id_Paciente?>)"><i class="fas fa-trash"></i></a>
+                                                <a href="" class="btn btn-danger" onclick="myFunction(0,  <?= $paciente->id_Paciente ?>)"><i class="fas fa-trash"></i></a>
                                                 @endcan
                                                 @can('editar-calendario')
-                                                <a href="{{ route('asistencia.edit', $paciente->id_Paciente) }}"  class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
+                                                <a href="{{ route('asistencia.edit', $paciente->id_Paciente) }}" class="btn btn-success"><i class="fas fa-vote-yea"></i></a>
                                                 @endcan
                                             </div>
                                         </td>
@@ -87,12 +91,11 @@
 
 @section('scripts')
 <script>
-
     function myFunction(estado, id) {
         $.getJSON(`updateState/paciente/${id}/estado/${estado}`, function(response) {
             console.log(response)
 
-         })
+        })
     }
 
 
